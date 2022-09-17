@@ -1,0 +1,443 @@
+@import './reset'
+@import './var'
+
+html, body
+  height 100%
+  width 100%
+  overflow hidden
+  color #666
+  font-size 12px
+
+body
+  perspective 1px
+  .van-toast--loading
+    background-color rgba(0, 0, 0, 0)
+  .press:active
+    background-color #f2f3f5
+    filter saturate(300%)
+  .w100p
+    width 100% !important
+  .h100p
+    height 100% !important
+  // w10...w90,  w100 - w500 ... h10...
+  for val in 1 .. 9
+    .w{val * 10}
+      width: val * 10px !important
+    .h{val * 10}
+      height: val * 10px !important
+  for val in 2 .. 20
+    .w{val * 50}
+      width: val * 50px !important
+    .h{val * 50}
+      height: val * 50px !important
+
+// 盒子阴影
+.box-shadow
+  box-shadow $box-shadow
+  &:hover
+    box-shadow 0 0 4px 0 rgba(#c8c8c8)
+
+.ctrl-icon
+  color #333
+  cursor pointer
+  background-color rgba(#fff, 0.5)
+  display flex
+  align-items center
+  justify-content center
+  transition 0.3s
+  border-radius 50%
+  z-index 10
+  &:hover
+    background-color rgba(#fff, 0.9)
+
+.title-line:before
+  content ''
+  display inline-block
+  width 3px
+  height 18px
+  margin-right 5px
+  background $theme
+
+.danger
+  color $danger !important
+
+.theme, .primary
+  color $theme !important
+
+.warning
+  color $warning !important
+
+.info
+  color $info !important
+
+.success
+  color $success !important
+
+.page-bg
+  background-color $page-bg
+
+.page-content
+  background-color $page-content
+
+.page-dark
+  background-color $page-dark
+
+// flex
+.flex
+  display flex
+
+.flex-1
+  flex 1 1 0%
+
+.flex-auto
+  flex 0 0 auto
+
+body
+  .flex-center
+    display flex
+    justify-content center
+    align-items center
+
+$fit = {
+  contain: contain,
+  cover: cover,
+  fill: fill,
+  scale-down: scale-down
+}
+
+for type, tVal in $fit
+  .fit-{type}
+    object-fit tVal
+
+.scroll-y
+  display flex
+  flex-direction column
+
+  scroll('y')
+
+.scroll-x
+  display flex
+
+  scroll('x')
+
+// omit-2...
+$omit = ''
+$line = 2 3 4 5 6
+
+for num in $line
+  $omit += '.omit-' + num + ','
+
+{$omit}
+  display -webkit-box
+  overflow hidden
+  word-break break-all
+  /* autoprefixer: ignore next */
+  -webkit-box-orient vertical
+
+for num in $line
+  .omit-{num}
+    -webkit-line-clamp num
+
+.bg-gradient-x-th2
+  background-image linear-gradient(0deg, #6e9bc5, #354e6b)
+
+.bg-gradient-y-th2
+  background-image linear-gradient(90deg, #6e9bc5, #354e6b)
+
+.el-button
+  &.bg-gradient-x
+    border-color transparent
+  &.bg-gradient-y
+    border-color transparent
+
+// 公共类
+.line-through
+  text-decoration line-through
+
+.clearfix
+  // *zoom 1
+  clear both
+
+.clearfix::before, .clearfix::after
+  content ' '
+  display block
+  height 0
+  clear both
+  visibility hidden
+
+.inline-block
+  display inline-block
+
+.overflow-hidden
+  overflow hidden
+
+.fl
+  float left
+
+.fr
+  float right
+
+.hide
+  display none
+
+.hand
+  cursor pointer
+
+.omit
+  overflow hidden
+  text-overflow ellipsis
+  white-space nowrap
+  word-break break-all
+
+.flex-omit-x
+  width 0
+  flex 1
+
+  @extend .omit
+
+.flex-omit-y
+  height 0
+  flex 1
+
+  @extend .omit
+
+.tal
+  text-align left
+
+.tac
+  text-align center
+
+.tar
+  text-align right
+
+.pf
+  position fixed
+
+.pr
+  position relative !important
+
+.pa
+  position absolute !important
+
+.pac
+  position absolute !important
+  left 50%
+  top 50%
+  transform translate(-50%, -50%)
+
+.pfc
+  position fixed !important
+  left 50%
+  top 50%
+  transform translate(-50%, -50%)
+
+.pf-full
+  position fixed !important
+  left 0
+  top 0
+  right 0
+  bottom 0
+
+.select-none
+  user-select none
+
+.pre
+  white-space pre-wrap
+
+.full
+  height 100%
+  width 100%
+
+.round
+  border-radius 50%
+
+.strong
+  font-weight 600
+
+.hover
+  hover()
+
+.hover-success
+  hover($success)
+
+.hover-danger
+  hover($danger)
+
+.line
+  position relative
+  &::after
+    content ''
+    position absolute
+    width 100px
+    height 1px
+    background-color #bbb
+    left -120px
+    top 50%
+  &::before
+    content ''
+    position absolute
+    width 100px
+    height 1px
+    background-color #bbb
+    right -120px
+    top 50%
+
+.list-style-none
+  list-style none
+
+.list-style-disc
+  list-style disc
+
+.list-style-circle
+  list-style circle
+
+.list-style-decimal
+  list-style decimal
+
+.indent
+  text-indent 2em
+
+.break-all
+  word-break break-all
+
+:root
+  --success #18bc37
+  --primary #2979ff
+  --danger #e43d33
+  --err var(--danger)
+  --warn #f3a73f
+  --info #8f939c
+  --box-shadow 1px 1px 5px rgba(0, 0, 0, 0.2)
+  --lg linear-gradient(180deg, #4d6ce8 0%, #4764d8 7%, #2976c9 16%, #2689bb 54%, #2692b6 70%, #269cad 89%, #22af9d 100%)
+
+body
+  .round
+    border-radius 50%
+  .flex, .df
+    display flex
+  .flex1
+    flex 1
+    width 0
+  .fdc
+    flex-direction column
+  .fww
+    flex-wrap wrap
+  .flex-auto
+    flex 0 0 auto
+  .jcc
+    justify-content center
+  .jcfe
+    justify-content flex-end
+  .jcfs
+    justify-content flex-start
+  .jcsb
+    justify-content space-between
+  .jcsa
+    justify-content space-around
+  .aic
+    align-items center
+  .aifs
+    align-items flex-start
+  .aife
+    align-items flex-end
+  .pre
+    white-space pre-wrap
+  .fz12, .fs12
+    font-size 12px
+  .fz14, .fs14
+    font-size 14px
+  .fz16, .fs16
+    font-size 16px
+  .blod
+    font-weight bold
+  .cf
+    color #fff
+  .c3
+    color #333
+  .c6
+    color #666
+  .c9
+    color #999
+  .danger
+    color var(--danger)
+  .success
+    color var(--success)
+  .warn
+    color var(--warn)
+  .primary
+    color var(--primary)
+  .err
+    color var(--err)
+  .bg-danger
+    background-color var(--danger)
+  .bg-sucess
+    background-color var(--sucess)
+  .bg-warn
+    background-color var(--warn)
+  .bg-primary
+    background-color var(--primary)
+  .bg-err
+    background-color var(--err)
+  .bg-info
+    background-color var(--info)
+  .bg-white
+    background-color #fff
+  .bg-lg
+    background-image var(--lg)
+  .bdt
+    border-top 1px solid #f1f1f1
+  .p5
+    padding 5px
+  .pt5
+    padding-top 5px
+  .pl5
+    padding-left 5px
+  .pr5
+    padding-right 5px
+  .pb5
+    padding-bottom 5px
+  .p10
+    padding 10px
+  .pt10
+    padding-top 10px
+  .pl10
+    padding-left 10px
+  .pr10
+    padding-right 10px
+  .pb10
+    padding-bottom 10px
+  .m10
+    margin 10px
+  .mt10
+    margin-top 10px
+  .mb10
+    margin-bottom 10px
+  .ml10
+    margin-left 10px
+  .mr10
+    margin-right 10px
+  .m5
+    margin 5px
+  .mt5
+    margin-top 5px
+  .mb5
+    margin-bottom 5px
+  .ml5
+    margin-left 5px
+  .mr5
+    margin-right 5px
+  .pac
+    position absolute
+    left 50%
+    top 50%
+    transform translate(-50%, -50%)
+  .pa
+    position absolute
+  .pr
+    position relative
+  .tac
+    text-align center
+  .brs6
+    border-radius 6px
+  .f1
+    flex 1

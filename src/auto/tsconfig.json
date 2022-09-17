@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "jsx": "preserve",
+    "typeRoots": [
+      "../../node_modules/@types",
+      "../../node_modules/@autojs"
+    ],
+    "allowJs": true, /* Allow JavaScript files to be a part of your program. Use the `checkJS` option to get errors from these files. */
+  },
+  "exclude": [
+    "node_modules",
+    "out"
+  ]
+}

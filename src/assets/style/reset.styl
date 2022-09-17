@@ -1,0 +1,41 @@
+@import './var'
+
+*
+  box-sizing border-box
+
+*:before, *:after
+  box-sizing border-box
+
+html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, button, textarea, p, blockquote, th, td
+  margin 0
+  padding 0
+
+body
+  font-family 'Arial', 'Microsoft YaHei', '黑体', '宋体', sans-serif
+
+a
+  color $fc-b2
+  text-decoration none
+  cursor pointer
+
+a:hover
+  text-decoration none
+  color $theme !important
+
+img
+  border none
+  vertical-align middle
+
+iframe
+  border none
+
+::selection
+  color #fff
+  background #57b3b0
+
+.iconfont
+  font-size 16px
+
+:root
+  --animate-duration 500ms
+  // --animate-delay 0.9s

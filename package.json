@@ -1,0 +1,33 @@
+{
+  "name": "myy",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "core-js": "^3.6.5",
+    "vant": "^3.6.2",
+    "vue": "^3.2.38",
+    "vue-router": "^4.1.5"
+  },
+  "devDependencies": {
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "@autojs/types-pro8": "^8.8.0",
+    "@vue/cli-plugin-babel": "~4.5.15",
+    "@vue/cli-plugin-router": "~4.5.15",
+    "@vue/cli-plugin-vuex": "~4.5.15",
+    "@vue/cli-service": "~4.5.15",
+    "@vue/compiler-sfc": "^3.0.0",
+    "lint-staged": "^9.5.0",
+    "postcss-pxtorem": "^5.1.1",
+    "pug": "^3.0.2",
+    "pug-plain-loader": "^1.1.0",
+    "raw-loader": "^4.0.2",
+    "stylus": "^0.54.7",
+    "stylus-loader": "^3.0.2",
+    "unplugin-vue-components": "^0.22.7"
+  }
+}
