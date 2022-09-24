@@ -15,6 +15,8 @@
 ## 用到的工具
 >  [autox.js app](http://autoxoss.autoxjs.com/autoxjs/6.3.4/app-v6-universal-release-unsigned-signed.apk)
 
+>  [autox.js app 投屏工具](https://gitee.com/Barryda/QtScrcpy)
+
 >  VSCode,  搜索autox 插件安装
 
 >  [autox.js 项目地址](https://github.com/kkevsekk1/AutoX)
