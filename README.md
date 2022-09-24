@@ -12,6 +12,13 @@
 
 ## 适用范围
 > auto.js 都能用 (包括 autoX 等等)
+## 用到的工具
+>  [autox.js app](http://autoxoss.autoxjs.com/autoxjs/6.3.4/app-v6-universal-release-unsigned-signed.apk)
+
+>  VSCode,  搜索autox 插件安装
+
+>  [autox.js 项目地址](https://github.com/kkevsekk1/AutoX)
+  
 
 ## 开发 (前端Vue人直接上手, 老手直接跳转第五步, 嘿嘿嘿)
 >一. `npm install`，
