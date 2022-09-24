@@ -2,7 +2,7 @@
 'ui';
 // initUi("http://www.baidu.com/");
 // initUi('http://192.168.1.107:5666/#/')
-initUi('http://192.168.31.201:5666/#/')
+initUi('http://192.168.3.242:5666/#/')
 
 /**
  * 初始化 UI

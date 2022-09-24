@@ -32,7 +32,10 @@ export default {
       // 或者直接调用 auto.execAjCode('app.startActivity("console")')
     },
     runAutoFile () {
-      auto.execAjCode(require('@/auto/robot/robot.douyin'))
+    let js =  require('@/auto/robot/robot.douyin')
+      auto.execAjCode(`threads.start(function () {
+        ${js}
+      })`)
       // 或者直接调用 auto.execAjCode('app.startActivity("console")')
     },
   },

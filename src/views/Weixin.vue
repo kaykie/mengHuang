@@ -89,7 +89,7 @@ export default {
     startNow () {
       auto.invoke(
         'runRobotNow',
-        [{ robot: require('@/auto/robot/robot.douyin'), ...this.model }],
+        [{ robot: require('@/auto/robot/robot.weixin'), ...this.model }],
         () => {
           // log('ajFun1 回调:', typeof r, r)
         },
