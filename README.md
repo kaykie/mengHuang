@@ -4,11 +4,16 @@
 ### 真正做到实时热更新脚本!!!
 
 
+
 > 使用 `vue3 vue_cli vant` 作为 autojs 的界面，可以互相通讯。
 
 >[vant 文档](https://vant-ui.github.io/vant/#/zh-CN/quickstart), [autoX 文档](http://doc.autoxjs.com/#/?id=%E7%BB%BC%E8%BF%B0)
 
 > 当然也可以用 react(Vue3真香) 之类的前端框架
+
+# 项目运行视频
+> [【Vue-autojs基于vue cli 的自动化App脚本框架, 前端人有手就会!-哔哩哔哩】](https://b23.tv/fDnTFnl)
+
 
 ## 适用范围
 > auto.js 都能用 (包括 autoX 等等)
