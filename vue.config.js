@@ -7,7 +7,7 @@ const ComponentsPlugin = require('unplugin-vue-components/webpack')
 let timeStamp = new Date().getTime()
 module.exports = {
   productionSourceMap: false,
-  publicPath: process.env.NODE_ENV !== 'production' ? '/' : 'https://gitee.com/msdoge/vue-autojs/raw/master/dist/',
+  publicPath: process.env.NODE_ENV == 'production' ? 'https://gitee.com/msdoge/vue-autojs/raw/master/dist/' : '/',
   devServer: {
     open: true,
     host: '0.0.0.0',
