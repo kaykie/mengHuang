@@ -4,16 +4,15 @@
 // initUi('http://192.168.1.107:5666/#/')
 // initUi('https://gitee.com/msdoge/vue-autojs/raw/build/dist/index.html')
 // initUi('http://192.168.3.242:5666/#/') 
-events.broadcast.on('loadHtml', function (str) {
-  initUi(str)
-});
 
 threads.start(() => {
   let htmlStr = http.get('https://gitee.com/msdoge/vue-autojs/raw/build/dist/index.html').body.string()
-  console.log('🚀 ~ htmlStr', htmlStr)
-  let base64 = $base64.encode(htmlStr, 'utf-8')
-  console.log('🚀 ~ base64', base64)
-  events.broadcast.emit('loadHtml', base64);
+  files.write("./index.html", htmlStr)
+  events.broadcast.emit('loadHtml', './index.html')
+})
+
+events.broadcast.on('loadHtml', function (str) {
+  initUi(str)
 })
 
 /**
@@ -21,21 +20,15 @@ threads.start(() => {
  * @param {string} htmlPath html文件的地址
  */
 function initUi (htmlPath) {
-  console.log('🚀 ~ htmlPath', htmlPath)
   ui.layout('<webview id="web" h="*" w="*"  />')
   webViewExpand_init(ui.web)
-  // Object.keys(ui.web)
-  let path = 'data:text/html;base64,' + htmlPath
-  console.log('🚀 ~ path', path)
-  ui.web.loadUrl(path)
 
-  // console.log('🚀 ~ Object.keys(ui.web)', Object.keys(ui.web).map(i => (i + '****' + typeof ui.web[i])))
-  // if (htmlPath.indexOf('http') === 0) {
-  //   ui.web.loadUrl(htmlPath)
-  // } else {
-  //   let path = 'file:' + files.path(htmlPath)
-  //   ui.web.loadUrl(path)
-  // }
+  if (htmlPath.indexOf('http') === 0) {
+    ui.web.loadUrl(htmlPath)
+  } else {
+    let path = 'file:' + files.path(htmlPath)
+    ui.web.loadUrl(path)
+  }
 }
 
 /**
