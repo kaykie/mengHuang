@@ -4,7 +4,7 @@
 initUi('http://192.168.3.66:5666/#/')
 
 
-// 二.上线使用gitee服务器
+// 二.上线使用gitee服务器(需上传打包文件到gitee后开源打包文件, 建议单独开个仓库, 每次修改就更新下git)
 // threads.start(() => {
 //   let htmlStr = http.get('https://gitee.com/msdoge/vue-autojs/raw/build/dist/index.html').body.string()
 //   files.write("./index.html", htmlStr)
