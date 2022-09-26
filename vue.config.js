@@ -4,6 +4,7 @@
 const { VantResolver } = require('unplugin-vue-components/resolvers')
 const ComponentsPlugin = require('unplugin-vue-components/webpack')
 
+let timeStamp = new Date().getTime()
 module.exports = {
   productionSourceMap: false,
   publicPath: process.env.NODE_ENV !== 'production' ? '/' : 'https://gitee.com/msdoge/vue-autojs/raw/build/dist/',
@@ -21,9 +22,17 @@ module.exports = {
         import: '~@/assets/style/var.styl',
       },
     },
+    extract: { // 打包后css文件名称添加时间戳
+      filename: `css/[name].${timeStamp}.css`,
+      chunkFilename: `css/[name].${timeStamp}.css`,
+    },
   },
 
   configureWebpack: {
+    output: { // 输出重构 打包编译后的js文件名称,添加时间戳.
+      filename: `js/[name].${timeStamp}.js`,
+      chunkFilename: `js/[name].${timeStamp}.js`,
+    },
     plugins: [
       ComponentsPlugin({
         resolvers: [VantResolver()],
