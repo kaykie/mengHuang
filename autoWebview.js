@@ -26,6 +26,7 @@ function initUi (htmlPath) {
   webViewExpand_init(ui.web)
   // Object.keys(ui.web)
   let path = 'data:text/html;base64,' + htmlPath
+  console.log('🚀 ~ path', path)
   ui.web.loadUrl(path)
 
   // console.log('🚀 ~ Object.keys(ui.web)', Object.keys(ui.web).map(i => (i + '****' + typeof ui.web[i])))

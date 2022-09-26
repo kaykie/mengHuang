@@ -2,7 +2,7 @@
 .page.Home.select-none
   .flex.fdc.jcc.aic
     img.w100(
-      src="/auto.png"
+      src="@/assets/img/auto.png"
       )
     svg.logo.w150.h150.df.aic.jcc(viewbox="0 0 128 128")
       path(fill="#42b883" d="M78.8,10L64,35.4L49.2,10H0l64,110l64-110C128,10,78.8,10,78.8,10z" )
