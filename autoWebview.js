@@ -1,15 +1,15 @@
 /* eslint-disable */
 'ui';
-// initUi("http://www.baidu.com/");
-// initUi('http://192.168.1.107:5666/#/')
-// initUi('https://gitee.com/msdoge/vue-autojs/raw/build/dist/index.html')
-// initUi('http://192.168.3.242:5666/#/') 
+// 一. 开发使用本地地址调试
+initUi('http://192.168.3.66:5666/#/')
 
-threads.start(() => {
-  let htmlStr = http.get('https://gitee.com/msdoge/vue-autojs/raw/build/dist/index.html').body.string()
-  files.write("./index.html", htmlStr)
-  events.broadcast.emit('loadHtml', './index.html')
-})
+
+// 二.上线使用gitee服务器
+// threads.start(() => {
+//   let htmlStr = http.get('https://gitee.com/msdoge/vue-autojs/raw/build/dist/index.html').body.string()
+//   files.write("./index.html", htmlStr)
+//   events.broadcast.emit('loadHtml', './index.html')
+// })
 
 events.broadcast.on('loadHtml', function (str) {
   initUi(str)
