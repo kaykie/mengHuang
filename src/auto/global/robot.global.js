@@ -10,11 +10,13 @@ events.broadcast.on('callJs', function (str) {
   callJs(str)
 });
 
+// 执行js 方法
 function jsCall (str) {
   events.broadcast.emit('callJs', str);
 }
 global.jsCall = jsCall
 
+// 给js 变量赋值
 function jsVal (key, val) {
   val = typeof val === 'object' ? `JSON.parse('${JSON.stringify(val)}')` : `"${val}"`
   jsCall(`${key}=${val}`)
@@ -22,7 +24,7 @@ function jsVal (key, val) {
 
 global.jsVal = jsVal
 
-
+// 将脚本和参数挂在global.curRobot, 然后可以在robot.menu.js 悬浮菜单点击开始执行
 global.runRobot = function runRobot (params) {
   toastLog('机器人已加载, 请打开App对应页面, 点击开始!')
   global.curRobot = function () {
@@ -30,6 +32,7 @@ global.runRobot = function runRobot (params) {
   }
 }
 
+// 直接执行脚本
 global.runRobotNow = function runRobotNow (params) {
   global.curRobot = function () {
     runRobotNow(params)
@@ -42,6 +45,7 @@ global.runRobotNow = function runRobotNow (params) {
   })
 }
 
+// 停止脚本
 global.robotStop = function robotStop () {
   global.robotThread && global.robotThread.interrupt()
 }
