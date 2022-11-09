@@ -54,7 +54,7 @@
 
 ## 未来
 
-`jio本加密`
+`脚本加密`
 
 ## 截图
 
@@ -105,3 +105,39 @@ src
 ```
 
 ---
+
+```js
+开发技巧: (互相调用的方法直接挂在window/global)
+
+一: autojs => web
+
+1. autojs修改web数据
+// robot.global.js => global.jsVal:  autojs 中修改web/vue 中 数据(web一般将变量挂到window, 推荐直接修改vue $store, 数据相应改变视图)
+jsVal('$store.count', ++idx)
+jsVal('$store.log', ['asda', 'adasd']) // 支持array
+jsVal('$store.auth', { id: 'asdasdgfhgf45646asda4545s' }) // 支持object
+
+2. autojs调用web 方法
+// robot.global.js => global.jcCall:
+jsCall('console.log(1232)')
+
+
+二: web => autojs
+
+3. web 调用 autojs 文件模块 @/auto/robot/robot.weixin.js
+// Weixin.vue
+auto.invoke(
+  'runRobotNow',
+  [{ robot: require('@/auto/robot/robot.weixin'), ...this.model }],
+  () => {
+    // log('ajFun1 回调:', typeof r, r)
+  },
+)
+
+4. web 调用 autojs 方法 // User.vue
+// 调用方法
+window.auto.invoke('showLog')
+auto.invoke('toastLog', '调autojs方法 成功')
+// 执行代码
+window.auto.execAjCode('toastLog("执行autojs代码 成功")')
+```

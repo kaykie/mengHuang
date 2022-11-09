@@ -77,16 +77,7 @@ if (!global.backThread) {
 }
 
 
-/*
-**脚本编写:魚離ヤ吥開氺
-**脚本作用:仿真随机滑动
-**测试系统:安卓8.1
-**测试版本:4.1.1 Alpha2
-使用说明: 
-复制粘贴两个关键函数到自己脚本
-sml_move()调用即可
-*/
-//长距离测试
+//上滑
 global.swipeUp = function () {
   var a = device.width;
   var b = device.height;
