@@ -1,20 +1,12 @@
 /* eslint-disable */
 'ui';
 // 一. 开发使用本地地址调试
-// initUi('http://192.168.3.66:5666/#/')
+initUi('http://192.168.3.66:5666/#/')
 
 
-// 二.上线使用gitee服务器(需上传打包文件到gitee后开源打包文件, 建议单独开个仓库, 每次修改就更新下git)
-// 再修改vue.config.js 将 'https://gitee.com/msdoge/vue-autojs/raw/master/dist/' 改成你的开源仓库的地址,
-threads.start(() => {
-  let htmlStr = http.get('https://gitee.com/msdoge/vue-autojs/raw/master/dist/index.html').body.string()
-  files.write("./index.html", htmlStr)
-  events.broadcast.emit('loadHtml', './index.html')
-})
+// 二.上线
+// initUi('http://xx.com/#/')
 
-events.broadcast.on('loadHtml', function (str) {
-  initUi(str)
-})
 
 /**
  * 初始化 UI
