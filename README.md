@@ -30,7 +30,7 @@
 
 > [autox.js 项目地址](https://github.com/kkevsekk1/AutoX)
 
-## 开发 (前端 Vue 人直接上手, 老手直接跳转第五步, 嘿嘿嘿)
+## 开发 (前端 Vue 人直接上手, 老手直接跳转第五步, 嘿嘿嘿. PS: 请安装最新稳定版nodejs)
 
 > 一. `npm install`，
 
