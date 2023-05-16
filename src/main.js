@@ -5,6 +5,7 @@ import './auto/JSSDK'
 import './flexable'
 import router from './router'
 import './store'
+import vant from 'vant'
 // 初始化autojs 全局函数
 auto.execAjCode(require('@/auto/global/robot.global'))
 auto.execAjCode(require('@/auto/global/robot.menu'))
@@ -15,6 +16,7 @@ app.config.globalProperties.$store = $store
 window.$vm = app
 
 app.use(router)
+app.use(vant)
 
 app.mount('#app')
 

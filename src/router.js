@@ -23,9 +23,9 @@ const routes = [
     component: () => import('./views/Douyin.vue'),
   },
   {
-    path: '/Weixin',
-    name: 'Weixin',
-    component: () => import('./views/Weixin.vue'),
+    path: '/five',
+    name: 'five',
+    component: () => import('./views/five.vue'),
   },
 
 ]

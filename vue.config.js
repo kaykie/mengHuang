@@ -16,12 +16,6 @@ module.exports = {
     before: app => { },
   },
   css: {
-    loaderOptions: {
-      stylus: {
-        // @/ 是 src/ 的别名，想配的话可以alias上配
-        import: '~@/assets/style/var.styl',
-      },
-    },
     extract: { // 打包后css文件名称添加时间戳
       filename: `css/[name].${timeStamp}.css`,
       chunkFilename: `css/[name].${timeStamp}.css`,
