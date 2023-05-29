@@ -1,8 +1,7 @@
 /* eslint-disable */
 'ui';
 // 一. 开发使用本地地址调试
-initUi('http://192.168.31.23:5666/')
-
+initUi('http://192.168.31.226:5666/')
 
 // 二.上线
 // initUi('http://xx.com/#/')

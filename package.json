@@ -1,5 +1,5 @@
 {
-  "name": "myy",
+  "name": "mhxy",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -20,6 +20,7 @@
     "@vue/cli-plugin-vuex": "~4.5.15",
     "@vue/cli-service": "~4.5.15",
     "@vue/compiler-sfc": "^3.0.0",
+    "less": "^3.13.1",
     "less-loader": "^5.0.0",
     "lint-staged": "^9.5.0",
     "postcss-pxtorem": "^5.1.1",

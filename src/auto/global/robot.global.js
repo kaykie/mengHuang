@@ -5,6 +5,10 @@ function showLog () {
 global.showLog = showLog
 
 
+// if(!){
+//   toastLog('获取截图权限失败');
+//   exit()
+// }
 
 events.broadcast.on('callJs', function (str) {
   callJs(str)
@@ -85,7 +89,7 @@ global.swipeUp = function () {
 }
 
 // 修改web
-let idx = 0
-setInterval(() => {
-  jsVal('$store.count', ++idx)
-}, 1000);
+// let idx = 0
+// setInterval(() => {
+//   jsVal('$store.count', ++idx)
+// }, 1000);
