@@ -5,6 +5,12 @@
       {{ item.title }}
     </div>
   </div>
+  <div>
+    <van-button class="item" type="primary" block @click="handleTest">测试按钮</van-button>
+  </div>
+  <div>
+    <van-button class="item" type="primary" block @click="handleYueBing">抢月饼</van-button>
+  </div>
 </div>
   
 </template>
@@ -16,13 +22,13 @@ export default {
       store,
       list: [
         {
-          route: 'Douyin',
+          route: 'fiveBen',
           class: 'bg-mauve',
           title: '自动5本',
           icon: 'van-icon-chat-o'
         },
         {
-          route: 'five',
+          route: 'zhuagui',
           class: 'bg-cyan',
           title: '自动捉鬼',
           icon: 'van-icon-chat-o'
@@ -30,11 +36,33 @@ export default {
       ],
     }
   },
-  mounted () { },
+  mounted () { 
+    
+  },
   methods: {
     goPage (item) {
       this.$router.push({ name: item.route })
     },
+    handleTest(){
+      console.log('点击测试脚本')
+      auto.invoke(
+        'runRobotNow',
+        [{ robot: require('@/auto/robot/robot.test') }],
+        () => {
+          // log('ajFun1 回调:', typeof r, r)
+        },
+      )
+    },
+    handleYueBing(){
+      console.log('抢月饼')
+      auto.invoke(
+        'runRobot',
+        [{ robot: require('@/auto/robot/robot.yueBing') }],
+        () => {
+          // log('ajFun1 回调:', typeof r, r)
+        },
+      )
+    }
   },
 }
 </script>

@@ -1,5 +1,5 @@
 {
-  "name": "新建项目",
+  "name": "梦幻西游脚本",
   "main": "autoWebview.js",
   "ignore": [
       "dist",
@@ -16,7 +16,13 @@
       "yarn.lock",
       "vue.config.js",
       "README.md",
-      "tsconfig.json"
+      "tsconfig.json",
+      "postcss.config.js"
+  ],
+  "libs": [
+    "libmlkit_google_ocr_pipeline.so",
+    "libjackpal-androidterm5.so",
+    "libjackpal-termexec2.so"
   ],
   "packageName": "com.example",
   "versionName": "1.0.0",

@@ -6,7 +6,6 @@ initUi('http://192.168.31.226:5666/')
 // 二.上线
 // initUi('http://xx.com/#/')
 
-
 /**
  * 初始化 UI
  * @param {string} htmlPath html文件的地址

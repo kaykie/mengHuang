@@ -32,7 +32,7 @@ export default {
       // 或者直接调用 auto.execAjCode('app.startActivity("console")')
     },
     runAutoFile () {
-    let js =  require('@/auto/robot/robot.douyin')
+    let js =  require('@/auto/robot/robot.fiveBen')
       auto.execAjCode(`threads.start(function () {
         ${js}
       })`)

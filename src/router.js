@@ -8,24 +8,24 @@ const routes = [
       {
         path: '',
         name: 'Home',
-        component: () => import('./views/Home.vue'),
+        component: () => import('./views/home/index.vue'),
       },
       {
         path: 'User',
         name: 'User',
-        component: () => import('./views/User.vue'),
+        component: () => import('./views/user/user.vue'),
       },
     ],
   },
   {
-    path: '/Douyin',
-    name: 'Douyin',
-    component: () => import('./views/Douyin.vue'),
+    path: '/fiveBen',
+    name: 'fiveBen',
+    component: () => import('./views/home/fiveBen.vue'),
   },
   {
-    path: '/five',
-    name: 'five',
-    component: () => import('./views/five.vue'),
+    path: '/zhuagui',
+    name: 'zhuagui',
+    component: () => import('./views/home/zhuagui.vue'),
   },
 
 ]

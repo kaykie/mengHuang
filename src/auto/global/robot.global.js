@@ -44,6 +44,7 @@ global.runRobotNow = function runRobotNow (params) {
 
   global.robotStop()
   global.robotThread = threads.start(function () {
+    log(params)
     global.WEB_PARAMS = params
     eval(params.robot)
   })
@@ -86,6 +87,14 @@ global.swipeUp = function () {
   var a = device.width;
   var b = device.height;
   swipe(a * 0.5, b * 0.8, a * 0.5, b * 0.2, 500);
+}
+
+// 横屏时中心位置上滑
+global.swipeHorizontalUp = function () {
+  var h = device.width;
+  var w = device.height;
+  // console.log(a * 0.5, b * 0.5, a * 0.2, b * 0.5)
+  swipe(w * 0.5,h * 0.5, w * 0.5, h * 0.2 , Math.floor(Math.random() * 1200));
 }
 
 // 修改web
