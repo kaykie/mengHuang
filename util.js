@@ -4,12 +4,11 @@ function clickRect(rect,options) {
   if(!options){
     options = {}
   }
-  let text = options.text;
-  let textNum = options.textNum
-  sleep(1000);
-  log(rect)
-  if (rect.text)
-    log(`点击"${rect.text}"`);
+  // let text = options.text;
+  // let textNum = options.textNum
+  // log(rect)
+  // if (rect.text)
+  //   log(`点击"${rect.text}"`);
   // 按一定比例将范围缩小在中央位置
   // 0 < scale <= 1, 越小表示越集中于中间
   let scale = 0.8;
@@ -18,13 +17,31 @@ function clickRect(rect,options) {
   let width = rect.bounds.right - rect.bounds.left;
   let centerY = rect.bounds.top + height / 2;
   let centerX = rect.bounds.left + width / 2;
-  if(rect.text.length !== options.textNum){
-    
-  }
   x = Math.round((random() - 0.5) * width * scale + centerX);
   y = Math.round((random() - 0.5) * height * scale + centerY);
-  log(x,y);
   click(x, y);
+}
+
+function pressRect(rect,options) {
+  if(!options){
+    options = {}
+  }
+  // let text = options.text;
+  // let textNum = options.textNum
+  // log(rect)
+  // if (rect.text)
+  //   log(`点击"${rect.text}"`);
+  // 按一定比例将范围缩小在中央位置
+  // 0 < scale <= 1, 越小表示越集中于中间
+  var scale = 0.8;
+  var x,y
+  var height = rect.bounds.bottom - rect.bounds.top;
+  var width = rect.bounds.right - rect.bounds.left;
+  var centerY = rect.bounds.top + height / 2;
+  var centerX = rect.bounds.left + width / 2;
+  x = Math.round((Math.random() - 0.5) * width * scale + centerX);
+  y = Math.round((Math.random() - 0.5) * height * scale + centerY);
+  press(x, y,10);
 }
 
 // 点击模板图片
@@ -135,10 +152,11 @@ function findTextAndClick(text,options){
   if(!options) options = {}
   let index = options.index || 0;
   let textNum = options.textNum || text.length
+  let isRepeat = options.isRepeat || false;
   let originImg = captureScreen();
   if (originImg) {
       let img = images.grayscale(originImg)
-      var result = gmlkit.ocr(img,'zh');
+      let result = gmlkit.ocr(img,'zh');
       let arr = JSON.parse(JSON.stringify(result));
       // log(arr,text,'text')
       let findArray = []
@@ -148,6 +166,17 @@ function findTextAndClick(text,options){
         }
       })
       console.log(findArray)
+      if(isRepeat && findArray.length === 0){
+        sleep(1000)
+        log('上次未找到，再找一次！')
+        let result = gmlkit.ocr(img,'zh');
+        let arr = JSON.parse(JSON.stringify(result));
+        arr.children.forEach(item =>{
+          if(item.text.indexOf(text) >= 0){
+            findArray.push(item)
+          }
+        })
+      }
       img.recycle();
       if(findArray.length > 0){
         clickRect(findArray[index],{text:text,textNum:textNum})
@@ -177,7 +206,7 @@ function findTextRect(text){
           findArray.push(item)
         }
       })
-      console.log(findArray)
+      log(findArray)
       img.recycle();
       return findArray
       // 回收图片
@@ -225,5 +254,6 @@ module.exports = {
   hasText,
   isHasImageTemplate,
   findImageTemplatePoint,
-  clickImagePoint
+  clickImagePoint,
+  pressRect
 }

@@ -1,30 +1,33 @@
 auto()
 
-const {findTextAndClick,clickRect,clickImagePoint,findImageTemplatePoint,clickImageTemplate,findTextRect,hasText} = require('util.js')
+const {findTextAndClick,clickRect,pressRect,clickImagePoint,findImageTemplatePoint,clickImageTemplate,findTextRect,hasText} = require('util.js')
 
 let buyFirstPoint = {},
 buySecondPoint = {},
 zhongQiuYueBingPoint = {},
 yueBingPoint = {}
 while(true){
-  sleep(300);
   let res = findTextAndClick('梦幻');
-  console.log(res)
+  sleep(120)
   if(res){
     if(buyFirstPoint.bounds){
-      clickRect(buyFirstPoint)
+      // console.log(buyFirstPoint,'buyFirstPoint')
+      pressRect(buyFirstPoint)
     }else{
       let pointArr = findTextRect('购买');
       buyFirstPoint = pointArr[1]
+      pressRect(buyFirstPoint)
     }
-    
-    sleep(100);
+    sleep(90);
     if(buySecondPoint.bounds){
-      clickRect(buySecondPoint)
+      // console.log(buySecondPoint,'buySecondPoint')
+      pressRect(buySecondPoint)
     }else{
       let arr = findTextRect('购买');
       buySecondPoint = arr[1]
+      pressRect(buySecondPoint)
     }
+    sleep(120)
   }else{
     if(zhongQiuYueBingPoint.x){
       clickImagePoint(zhongQiuYueBingPoint)
@@ -34,7 +37,7 @@ while(true){
       })
       clickImagePoint(zhongQiuYueBingPoint)
     }
-    sleep(300)
+    sleep(100)
     if(yueBingPoint.x){
       clickImagePoint(yueBingPoint)
     }else{
