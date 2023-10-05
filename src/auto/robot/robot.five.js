@@ -33,7 +33,7 @@ sleep(5000)
 
 for(var i = 0;i< params.times;i++){
   toast(`开始第${i+1}轮鬼`)
-  findTextAndClick('日常-捉')
+  findTextAndClick('',{region:'rightHalf'})
   sleep(9 * 60 * 1000)
   while(true){
     if(hasText('少侠已经捉完')){
