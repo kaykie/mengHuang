@@ -11,6 +11,10 @@ function getRegion(regionStr){
     region = [0,0,height,width]
   }else if(regionStr === 'leftBottomHalf'){
     region = [0,width,height,width]
+  }else if(regionStr === 'rightHalf'){
+    region = [height,0,height,width * 2]
+  }else if(regionStr === 'leftHalf'){
+    region = [0,0,height,width * 2]
   }
   return region
 }
@@ -51,7 +55,7 @@ function gmlkitOcr(img,options){
     }
     return newArr
   }
-  return arr
+  return arr.children
 }
 // 点击找到的文字
 function clickRect(rect,options) {
@@ -61,6 +65,9 @@ function clickRect(rect,options) {
   // let text = options.text;
   // let textNum = options.textNum
   // log(rect)
+  if(!rect){
+    return
+  }
   if (rect.text)
     log(`点击"${rect.text}"`);
   // 按一定比例将范围缩小在中央位置
@@ -121,19 +128,22 @@ function clickImageTemplate(name,options){
     toastLog(`未找到${name}的图片`)
     if(isRepeat){
       sleep(5000)
-      p = findImage(img,smallTemp,{
+      var newImg = captureScreen();
+      p = findImage(newImg,smallTemp,{
         region:region
       });
       if(!p){
         toastLog(`还是未找到${name}的图片`)
         return false
       }
+      newImg.recycle()
     }else{
       return false
     }
   }
   click(p.x + Math.round(imgWidth /4 + Math.random() * imgWidth /4),p.y + Math.round(imgHeight / 4 + Math.random() * imgHeight/4))
   img.recycle();
+
   temp.recycle()
   smallTemp.recycle()
   return true
@@ -149,14 +159,8 @@ function isHasImageTemplate(name,options){
   if(!options){
     options = {}
   }
-  let region = options.region || [0,0];
-  let width = device.width / 2,height = device.height / 2;
-  if(region === 'leftTopHalf'){
-    region = [0,0,height,width]
-  }else if(region === 'rightTopHalf'){
-    region = [height,0,height,width]
-  }
-  
+  let regionStr = options.region;
+  let region = getRegion(regionStr)
   var img = captureScreen();
   var temp = images.read(`./images/${name}`);
   var hRatio = device.height / 2400;
@@ -173,14 +177,9 @@ function findImageTemplatePoint(name,options){
   if(!options){
     options = {}
   }
-  let region = options.region || [0,0];
-  let width = device.width / 2,height = device.height / 2;
-  if(region === 'leftTopHalf'){
-    region = [0,0,height,width]
-  }else if(region === 'rightTopHalf'){
-    region = [height,0,height,width]
-  }
-  
+  let regionStr = options.region || '';
+  let threshold = options.threshold || 0.9
+  let region = getRegion(regionStr)
   var img = captureScreen();
   var temp = images.read(`./images/${name}`);
   var imgWidth = temp.getWidth(),imgHeight = temp.getHeight();
@@ -188,7 +187,8 @@ function findImageTemplatePoint(name,options){
   var wRatio = device.width / 1080;
   var smallTemp = images.scale(temp,hRatio,wRatio)
   let p = findImage(img,smallTemp,{
-    region:region
+    region:region,
+    threshold:threshold
   });
   img.recycle();
   temp.recycle()
@@ -221,12 +221,14 @@ function findTextAndClick(text,options){
       if(isRepeat && findArray.length === 0){
         sleep(5000)
         log('上次未找到，再找一次！')
-        let arr = gmlkitOcr(img,{region:region});
+        var newImg = captureScreen();
+        let arr = gmlkitOcr(newImg,{region:region});
         arr.forEach(item =>{
           if(item.text.indexOf(text) >= 0){
             findArray.push(item)
           }
         })
+        newImg.recycle()
       }
       img.recycle();
       if(findArray.length > 0){
@@ -244,7 +246,6 @@ function findTextAndClick(text,options){
 
 // 寻找文字位置
 function findTextRect(text){
-  var originImg = captureScreen();
   let originImg = captureScreen();
   if (originImg) {
       let img = images.grayscale(originImg)
@@ -263,6 +264,7 @@ function findTextRect(text){
       // 回收图片
   } else {
       log("截图失败");
+      return []
   }
 }
 

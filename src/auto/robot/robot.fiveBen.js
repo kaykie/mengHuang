@@ -33,7 +33,7 @@ function taoHaiQu(){
         if(hasText('流沙')){
           findTextAndClick('什么妖怪')
         }else if(hasText('明珠')){
-          
+
         }
       }
     }
@@ -44,50 +44,65 @@ function taoHaiQu(){
   sleep(9000)
   findTextAndClick('普通',{isRepeat:true});
 }
+
+// 如果有X号则点击关闭
+function clickClosePoint(){
+  if(isHasImageTemplate('xhao.jpg')){
+    log('有一个x号，点击关闭')
+    clickImageTemplate('xhao.jpg',{region:'rightBottomHalf'})
+  }
+}
 // taoHaiQu()
 
-for(let i = 0;i<3;i++){
-  log(1111)
-  sleep(2000)
-  findTextAndClick('长安城')
-  sleep(3000)
-  const result = clickImageTemplate('bxxz.jpg',{
-    isRepeat:true
-  })
-  if(!result){
+// 普通副本
+function normalFuBen(){
+  for(let i = 0;i<3;i++){
+    clickClosePoint()
     sleep(2000)
-    clickImageTemplate('ytg.jpg')
-    sleep(5000)
-    randomClick()
+    clickImageTemplate('changAnCheng.png',{region:'leftTopHalf'})
+    // findTextAndClick('长安城')
+    sleep(3000)
+    const result = clickImageTemplate('bxxz.jpg')
+    if(!result){
+      sleep(2000)
+      clickImageTemplate('ytg.jpg')
+      sleep(5000)
+      randomClick()
+      sleep(2000)
+      // findTextAndClick('长安城')
+      clickImageTemplate('changAnCheng.png',{region:'leftTopHalf'})
+      sleep(2000)
+      clickImageTemplate('bxxz.jpg',{
+        isRepeat:true
+      })
+    }
+    sleep(7000)
+    clickImageTemplate('xuanZheFuBen.jpg',{isRepeat:true})
     sleep(2000)
-    findTextAndClick('长安城')
-    sleep(2000)
-    clickImageTemplate('bxxz.jpg',{
-      isRepeat:true
-    })
+    const arr = findTextRect('进入');
+    log(arr,'arr');
+    clickRect(arr[i],{})
+    sleep(3000)
+    taoHaiQu()
   }
-  sleep(7000)
-  clickImageTemplate('xuanZheFuBen.jpg',{isRepeat:true})
-  sleep(2000)
-  const arr = findTextRect('进入');
-  log(arr,'arr');
-  clickRect(arr[i],{})
-  sleep(3000)
-  taoHaiQu()
+
 }
-
-
+normalFuBen()
 // 侠士副本
 function xiaShiFuBen(){
+  findTextAndClick('侠士')
+  sleep(5000)
+  const arr = findTextRect('进入');
+  log(arr,'arr');
+  clickRect(arr[1],{})
+  sleep(5000)
   for(let i = 0;i<3;i++){
     const res = findTextAndClick('跳过',{isRepeat:true})
-    if(res){
-
-    }
-    sleep(5000)
+    sleep(7000)
     findTextAndClick('侠士')
     sleep(5000)
     clickImageTemplate('commonBtn.jpg');
+    isFight()
   }
   // 战斗中
   findTextAndClick('跳过');
@@ -95,31 +110,4 @@ function xiaShiFuBen(){
   sleep(6000)
   findTextAndClick('侠士')
 }
-
-
-// 琉璃碎
-function liuLiSui(){
-  findTextAndClick('跳过')
-  sleep(3000)
-  findTextAndClick('普通');
-  sleep(5000)
-  clickImageTemplate('commonBtn.jpg');
-  // 战斗中
-  findTextAndClick('跳过')
-  sleep(3000)
-  findTextAndClick('普通');
-  sleep(5000)
-  randomClick(); // 不需要点击按钮 直接进入
-  // 战斗中...
-  findTextAndClick('跳过')
-  sleep(3000)
-  findTextAndClick('普通');
-  sleep(3000)
-  clickImageTemplate('commonBtn.jpg'); // 点击进入战斗
-  // 战斗中...
-  findTextAndClick('跳过')
-  sleep(6000)
-  findTextAndClick('普通');
-}
-
-// liuLiSui()
+// xiaShiFuBen()

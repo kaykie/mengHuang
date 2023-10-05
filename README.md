@@ -55,8 +55,8 @@ node 版本 16.14.0；
 
 ## 截图
 
-<img src="type/home.jpg" width="160px"> 
-<img src="type/action.jpg" width="160px"> 
+<img src="type/home.jpg" width="220px"> 
+<img src="type/action.jpg" width="220px"> 
 
 ## 联系方式
 

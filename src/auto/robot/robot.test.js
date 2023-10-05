@@ -1,5 +1,5 @@
 auto();
-const {findTextAndClick,gmlkitOcr,randomClick,clickImageTemplate,findTextRect,hasText} = require('util.js')
+const {findTextAndClick,gmlkitOcr,findImageTemplatePoint,randomClick,clickImageTemplate,findTextRect,hasText} = require('util.js')
 
 var h = device.height;
 var w = device.width;
@@ -10,10 +10,14 @@ var ratioY = device.height/2400
 log(ratioX,ratioY)
 
 log(111)
-let originImg = images.read("./images/sample.jpg")
-let img = images.grayscale(originImg)
-let findArr = gmlkitOcr(img,{region:''})
-log(JSON.stringify(findArr))
+let originImg = images.read("./images/sample2.jpg")
+// let img = images.grayscale(originImg)
+
+// let findArr = gmlkitOcr(img,{region:''})
+// log(JSON.stringify(findArr))
+var temp = images.read(`./images/changAnCheng.png`);
+const point = findImage(originImg,temp)
+log(point)
 // 新增：自定义模型路径(必须是绝对路径), files.path() 将相对路径转为绝对路径
 // let myModelPath = files.path("./models");
 // 识别图片中的文字，返回完整识别信息（兼容百度OCR格式）。
