@@ -1,7 +1,7 @@
 <template>
   <div>
     <van-button round block @click="startNow" type="primary" native-type="submit">
-      开始执行五本
+      开始执行活动
     </van-button>
   </div>
 </template>
@@ -23,7 +23,7 @@ export default {
 
       auto.invoke(
         'runRobot',
-        [{ robot: require('@/auto/robot/robot.fiveBen'), ...this.model }],
+        [{ robot: require('@/auto/robot/robot.zhaoHuangLing'), ...this.model }],
         () => {
           // log('ajFun1 回调:', typeof r, r)
         },

@@ -1,4 +1,58 @@
 
+// 横屏情况
+function getRegion(regionStr){
+  const width = device.width / 2,height = device.height / 2;
+  let region = [0,0]
+  if(regionStr === 'rightBottomHalf'){
+    region = [height,width]
+  }else if(regionStr === 'rightTopHalf'){
+    region = [height,0,height,width]
+  }else if(regionStr === 'leftTopHalf'){
+    region = [0,0,height,width]
+  }else if(regionStr === 'leftBottomHalf'){
+    region = [0,width,height,width]
+  }
+  return region
+}
+
+function gmlkitOcr(img,options){
+  if(!options){
+    options = {}
+  }
+  let regionStr = options.region || '';
+  let region = getRegion(regionStr)
+  let imgWidth = img.getWidth()
+  let imgHeight = img.getHeight()
+  log(imgWidth,imgHeight)
+  let regionWidth = region[2] ? region[2]: imgWidth - region[0]
+  let regionHeight = region[3] ? region[3]: imgHeight - region[1]
+  log(region[0],region[1],regionWidth,regionHeight)
+  let newImg = images.clip(img,region[0],region[1],regionWidth,regionHeight)
+  let result = gmlkit.ocr(newImg,'zh');
+  let arr = JSON.parse(JSON.stringify(result));
+  log(arr)
+  if(regionStr){
+    const newArr = [];
+    for(let i = 0;i<arr.children.length;i++){
+      let item = arr.children[i];
+      newArr.push({
+        children:item.children,
+        confidence:item.confidence,
+        language:item.language,
+        level:item.level,
+        text:item.text,
+        bounds:{
+          bottom:item.bounds.bottom + region[1],
+          top:item.bounds.top + region[1],
+          left:item.bounds.left + region[0],
+          right: item.bounds.right + region[0]
+        }
+      })
+    }
+    return newArr
+  }
+  return arr
+}
 // 点击找到的文字
 function clickRect(rect,options) {
   if(!options){
@@ -7,8 +61,8 @@ function clickRect(rect,options) {
   // let text = options.text;
   // let textNum = options.textNum
   // log(rect)
-  // if (rect.text)
-  //   log(`点击"${rect.text}"`);
+  if (rect.text)
+    log(`点击"${rect.text}"`);
   // 按一定比例将范围缩小在中央位置
   // 0 < scale <= 1, 越小表示越集中于中间
   let scale = 0.8;
@@ -22,6 +76,7 @@ function clickRect(rect,options) {
   click(x, y);
 }
 
+// 点按目标点
 function pressRect(rect,options) {
   if(!options){
     options = {}
@@ -50,13 +105,8 @@ function clickImageTemplate(name,options){
     options = {}
   }
   let isRepeat = options.isRepeat || false;
-  let region = options.region || [0,0];
-  const width = device.width / 2,height = device.height / 2;
-  if(region === 'rightBottomHalf'){
-    region = [height,width]
-  }else if(region === 'rightTopHalf'){
-    region = [height,0,height,width]
-  }
+  let optionRegion = options.region || [0,0];
+  region = getRegion(optionRegion)
   log(region)
   var img = captureScreen();
   var temp = images.read(`./images/${name}`);
@@ -70,7 +120,10 @@ function clickImageTemplate(name,options){
   if(!p){
     toastLog(`未找到${name}的图片`)
     if(isRepeat){
-      p = findImage(img,smallTemp);
+      sleep(5000)
+      p = findImage(img,smallTemp,{
+        region:region
+      });
       if(!p){
         toastLog(`还是未找到${name}的图片`)
         return false
@@ -115,6 +168,7 @@ function isHasImageTemplate(name,options){
   return !!p
 }
 
+// 找到目标图片点
 function findImageTemplatePoint(name,options){
   if(!options){
     options = {}
@@ -146,32 +200,29 @@ function findImageTemplatePoint(name,options){
  * 打到文字并点击
  * @param {点击文字} text 
  * @param {延迟时间点击} delay 
- * @param {options} index如果目标图片上有多个 选择第几个 textNum目标文字数量，因为目标字数可能不同 
+ * @param {options} index如果目标图片上有多个 选择第几个  isRepeat如果没找到是否再找一次
  */
 function findTextAndClick(text,options){
   if(!options) options = {}
   let index = options.index || 0;
-  let textNum = options.textNum || text.length
   let isRepeat = options.isRepeat || false;
+  let region = options.region || ''
   let originImg = captureScreen();
   if (originImg) {
       let img = images.grayscale(originImg)
-      let result = gmlkit.ocr(img,'zh');
-      let arr = JSON.parse(JSON.stringify(result));
-      // log(arr,text,'text')
+      let arr = gmlkitOcr(img,{region:region});
       let findArray = []
-      arr.children.forEach(item =>{
+      arr.forEach(item =>{
         if(item.text.indexOf(text) >= 0){
           findArray.push(item)
         }
       })
       console.log(findArray)
       if(isRepeat && findArray.length === 0){
-        sleep(1000)
+        sleep(5000)
         log('上次未找到，再找一次！')
-        let result = gmlkit.ocr(img,'zh');
-        let arr = JSON.parse(JSON.stringify(result));
-        arr.children.forEach(item =>{
+        let arr = gmlkitOcr(img,{region:region});
+        arr.forEach(item =>{
           if(item.text.indexOf(text) >= 0){
             findArray.push(item)
           }
@@ -179,7 +230,7 @@ function findTextAndClick(text,options){
       }
       img.recycle();
       if(findArray.length > 0){
-        clickRect(findArray[index],{text:text,textNum:textNum})
+        clickRect(findArray[index],{text:text})
         return true
       }else{
         log('没找到')
@@ -255,5 +306,6 @@ module.exports = {
   isHasImageTemplate,
   findImageTemplatePoint,
   clickImagePoint,
-  pressRect
+  pressRect,
+  gmlkitOcr
 }

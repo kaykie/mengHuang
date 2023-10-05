@@ -1,15 +1,13 @@
 <template>
 <div class="home">
-  <div class="list" @click="goPage(item)" v-for="item in list">
-    <div :class="'item ' + item.class">
+  
+  <div class="list">
+    <div :class="'item ' + item.class" v-for="item in list" @click="goPage(item)">
       {{ item.title }}
     </div>
   </div>
-  <div>
+  <div v-if="isDev">
     <van-button class="item" type="primary" block @click="handleTest">测试按钮</van-button>
-  </div>
-  <div>
-    <van-button class="item" type="primary" block @click="handleYueBing">抢月饼</van-button>
   </div>
 </div>
   
@@ -32,12 +30,31 @@ export default {
           class: 'bg-cyan',
           title: '自动捉鬼',
           icon: 'van-icon-chat-o'
+        },
+        {
+          route: 'mengPai',
+          class: 'bg-black',
+          title: '门派',
+          icon: 'van-icon-chat-o'
+        },
+        {
+          route: 'yueBing',
+          class: 'bg-orange',
+          title: '抢月饼',
+          icon: 'van-icon-chat-o'
+        },
+        {
+          route: 'zhaoHuangLing',
+          class: 'bg-purple',
+          title: '周三召唤灵',
+          icon: 'van-icon-chat-o'
         }
       ],
+      isDev:true
     }
   },
   mounted () { 
-    
+    this.isDev = process.env.NODE_ENV === 'development'
   },
   methods: {
     goPage (item) {

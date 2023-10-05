@@ -4,7 +4,7 @@
 initUi('http://192.168.31.226:5666/')
 
 // 二.上线
-// initUi('http://xx.com/#/')
+// initUi('http://www.xiaye0.com/mh')
 
 /**
  * 初始化 UI

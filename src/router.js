@@ -23,11 +23,25 @@ const routes = [
     component: () => import('./views/home/fiveBen.vue'),
   },
   {
+    path: '/mengPai',
+    name: 'mengPai',
+    component: () => import('./views/home/mengPai.vue'),
+  },
+  {
     path: '/zhuagui',
     name: 'zhuagui',
     component: () => import('./views/home/zhuagui.vue'),
   },
-
+  {
+    path: '/yueBing',
+    name: 'yueBing',
+    component: () => import('./views/home/yueBing.vue'),
+  },
+  {
+    path: '/zhaoHuangLing',
+    name: 'zhaoHuangLing',
+    component: () => import('./views/home/zhaoHuangLing.vue'),
+  },
 ]
 const router = createRouter({
   history: createWebHashHistory(),
