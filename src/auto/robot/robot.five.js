@@ -3,7 +3,7 @@ var h = device.height;
 var w = device.width;
 // setScreenMetrics(w,h);
 
-const {findTextAndClick,randomClick,clickImageTemplate,hasText} = require('util.js')
+const {findTextAndClick,isFighting,randomClick,clickImageTemplate,hasText} = require('util.js')
 const ratioX = device.width/1800
 const ratioY = device.height/2400
 log(ratioX,ratioY)
@@ -32,8 +32,18 @@ var params = global.WEB_PARAMS.params
 sleep(5000)
 
 for(var i = 0;i< params.times;i++){
-  toast(`开始第${i+1}轮鬼`)
-  findTextAndClick('',{region:'rightHalf'})
+  if(isFighting()){
+    toast('战斗中...')
+  }else{
+    toast(`开始第${i+1}轮鬼`)
+    findTextAndClick('日常-',{region:'rightHalf'})
+    sleep(10000)
+    // 如果10秒后还没有在战斗中 说明没有点击到任务
+    if(!isFighting()){
+      findTextAndClick('捉拿',{region:'rightHalf'})
+    }
+  }
+
   sleep(9 * 60 * 1000)
   while(true){
     if(hasText('少侠已经捉完')){
@@ -43,7 +53,7 @@ for(var i = 0;i< params.times;i++){
   }
   findTextAndClick('确定');
   sleep(10000)
-  clickImageTemplate('zgrw.png');
+  clickImageTemplate('zgrw.png',{region:'rightHalf'});
   sleep(3000)
   randomClick()
 }

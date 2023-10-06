@@ -15,9 +15,13 @@ function getRegion(regionStr){
     region = [height,0,height,width * 2]
   }else if(regionStr === 'leftHalf'){
     region = [0,0,height,width * 2]
+  }else if(regionStr === 'center'){
+    // region = 
   }
   return region
 }
+
+
 
 function gmlkitOcr(img,options){
   if(!options){
@@ -127,7 +131,7 @@ function clickImageTemplate(name,options){
   if(!p){
     toastLog(`未找到${name}的图片`)
     if(isRepeat){
-      sleep(5000)
+      sleep(3000)
       var newImg = captureScreen();
       p = findImage(newImg,smallTemp,{
         region:region
@@ -194,6 +198,40 @@ function findImageTemplatePoint(name,options){
   temp.recycle()
   smallTemp.recycle()
   return {x:p.x,y:p.y,imgWidth:imgWidth,imgHeight:imgHeight}
+}
+
+function findImageTemplatePoints(name,options){
+  if(!options){
+    options = {}
+  }
+  let regionStr = options.region || '';
+  let threshold = options.threshold || 0.9
+  let max = options.max || 3
+  let region = getRegion(regionStr)
+  var img = captureScreen();
+  var temp = images.read(`./images/${name}`);
+  var imgWidth = temp.getWidth(),imgHeight = temp.getHeight();
+  var hRatio = device.height / 2400;
+  var wRatio = device.width / 1080;
+  var smallTemp = images.scale(temp,hRatio,wRatio)
+  let points = images.matchTemplate(img,smallTemp,{
+    region:region,
+    threshold:threshold,
+    max:max
+  });
+  img.recycle();
+  temp.recycle()
+  smallTemp.recycle()
+  let map = new Map();
+  points.points.forEach(item => {
+      if(!map.has(item.x + ',' + item.y)){
+          map.set(item.x + ',' + item.y, true);
+      }
+  });
+  let uniqueArray = Array.from(map.keys()).map(key => {
+      return {x: parseFloat(key.split(',')[0]), y: parseFloat(key.split(',')[1]),imgWidth:imgWidth,imgHeight:imgHeight}
+  });
+  return uniqueArray
 }
 
 /**
@@ -298,6 +336,11 @@ function hasText(text){
   }
 }
 
+// 判断是否在战斗中
+function isFighting(){
+  return isHasImageTemplate('isFight.jpg',{region:'leftTopHalf'})
+}
+
 module.exports = {
   clickRect,
   findTextAndClick,
@@ -309,5 +352,7 @@ module.exports = {
   findImageTemplatePoint,
   clickImagePoint,
   pressRect,
-  gmlkitOcr
+  gmlkitOcr,
+  isFighting,
+  findImageTemplatePoints
 }

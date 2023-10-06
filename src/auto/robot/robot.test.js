@@ -10,14 +10,28 @@ var ratioY = device.height/2400
 log(ratioX,ratioY)
 
 log(111)
-let originImg = images.read("./images/sample2.jpg")
+let originImg = images.read("./images/sample3.jpg")
 // let img = images.grayscale(originImg)
 
 // let findArr = gmlkitOcr(img,{region:''})
 // log(JSON.stringify(findArr))
-var temp = images.read(`./images/changAnCheng.png`);
-const point = findImage(originImg,temp)
-log(point)
+var temp = images.read(`./images/jingRu.jpg`);
+const point = images.matchTemplate(originImg,temp,{
+  max:3
+})
+const pointArr = [];
+let map = new Map();
+
+point.points.forEach(item => {
+    if(!map.has(item.x + ',' + item.y)){
+        map.set(item.x + ',' + item.y, true);
+    }
+});
+
+let uniqueArray = Array.from(map.keys()).map(key => {
+    return {x: parseFloat(key.split(',')[0]), y: parseFloat(key.split(',')[1])}
+});
+log(uniqueArray)
 // 新增：自定义模型路径(必须是绝对路径), files.path() 将相对路径转为绝对路径
 // let myModelPath = files.path("./models");
 // 识别图片中的文字，返回完整识别信息（兼容百度OCR格式）。
