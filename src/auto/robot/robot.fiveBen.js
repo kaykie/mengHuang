@@ -12,6 +12,55 @@ function isFight(){
     log('还在战斗中...')
   }
 }
+
+// 非普通 一些特殊情况执行
+function specialFuBen(){
+  if(hasText('桃花')){
+    findTextAndClick('桃花')
+    sleep(10000)
+    
+    if(isHasImageTemplate('commonBtn.jpg')){
+      clickImageTemplate('commonBtn.jpg',{region:'rightBottomHalf',isRepeat:true});
+    }else{
+      // 桃花定情这个副本有时候是需要随机点击的
+      randomClick()
+      sleep(800)
+      randomClick()
+      sleep(800)
+      randomClick()
+      sleep(800)
+      randomClick()
+      sleep(800)
+      findTextAndClick('桃花')
+      sleep(3000)
+      clickImageTemplate('commonBtn.jpg',{region:'rightBottomHalf',isRepeat:true});
+    }
+  }else if(hasText('如梦')){
+  // 绿烟如梦是没有普通字眼的
+    findTextAndClick('如梦')
+    sleep(10000)
+    
+    if(isHasImageTemplate('commonBtn.jpg')){
+      clickImageTemplate('commonBtn.jpg',{region:'rightBottomHalf',isRepeat:true});
+    }else{
+      // 绿烟如梦这个副本有时候是需要随机点击的
+      randomClick()
+      sleep(800)
+      randomClick()
+      sleep(800)
+      randomClick()
+      sleep(800)
+      randomClick()
+      sleep(800)
+      findTextAndClick('如梦')
+      sleep(3000)
+      clickImageTemplate('commonBtn.jpg',{region:'rightBottomHalf',isRepeat:true});
+    }
+  }else{
+    randomClick()
+  }
+}
+
 // 普通
 function taoHaiQu(){
   for(let i = 0;i < 3;i++){
@@ -25,50 +74,7 @@ function taoHaiQu(){
     const res2 = findTextAndClick('普通',{isRepeat:true,region:'rightHalf'});
     sleep(6000)
     if(!res2){
-      if(hasText('桃花')){
-        findTextAndClick('桃花')
-        sleep(10000)
-        
-        if(isHasImageTemplate('commonBtn.jpg')){
-          clickImageTemplate('commonBtn.jpg',{region:'rightBottomHalf',isRepeat:true});
-        }else{
-          // 桃花定情这个副本有时候是需要随机点击的
-          randomClick()
-          sleep(800)
-          randomClick()
-          sleep(800)
-          randomClick()
-          sleep(800)
-          randomClick()
-          sleep(800)
-          findTextAndClick('桃花')
-          sleep(3000)
-          clickImageTemplate('commonBtn.jpg',{region:'rightBottomHalf',isRepeat:true});
-        }
-      }else if(hasText('如梦')){
-      // 绿烟如梦是没有普通字眼的
-        findTextAndClick('如梦')
-        sleep(10000)
-        
-        if(isHasImageTemplate('commonBtn.jpg')){
-          clickImageTemplate('commonBtn.jpg',{region:'rightBottomHalf',isRepeat:true});
-        }else{
-          // 绿烟如梦这个副本有时候是需要随机点击的
-          randomClick()
-          sleep(800)
-          randomClick()
-          sleep(800)
-          randomClick()
-          sleep(800)
-          randomClick()
-          sleep(800)
-          findTextAndClick('如梦')
-          sleep(3000)
-          clickImageTemplate('commonBtn.jpg',{region:'rightBottomHalf',isRepeat:true});
-        }
-      }else{
-        randomClick()
-      }
+      specialFuBen()
     }else{
       let res3 = clickImageTemplate('commonBtn.jpg',{region:'rightBottomHalf',isRepeat:true});
       if(!res3){
@@ -116,12 +122,12 @@ function clickClosePoint(){
 
 // 普通副本
 function normalFuBen(){
-  for(let i = 0;i<3;i++){
+  for(var i = 0;i<3;i++){
     clickClosePoint()
     sleep(2000)
     clickImageTemplate('changAnCheng.png',{region:'leftTopHalf'})
     sleep(3000)
-    const result = clickImageTemplate('bxxz.jpg')
+    var result = clickImageTemplate('bxxz.jpg')
     log(result,'result')
     if(!result){
       sleep(2000)

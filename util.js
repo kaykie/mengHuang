@@ -131,25 +131,30 @@ function clickImageTemplate(name,options){
   if(!p){
     toastLog(`未找到${name}的图片`)
     if(isRepeat){
+      log('走这了2',p)
       sleep(3000)
       var newImg = captureScreen();
+      sleep(200)
       p = findImage(newImg,smallTemp,{
         region:region
       });
+      newImg.recycle()
       if(!p){
         toastLog(`还是未找到${name}的图片`)
         return false
       }
-      newImg.recycle()
     }else{
+      log('走这了')
       return false
     }
   }
+  log('走这了3',p)
   click(p.x + Math.round(imgWidth /4 + Math.random() * imgWidth /4),p.y + Math.round(imgHeight / 4 + Math.random() * imgHeight/4))
   img.recycle();
 
   temp.recycle()
   smallTemp.recycle()
+  log('走这了4',p)
   return true
 }
 
