@@ -17,8 +17,7 @@ function isFight(){
 function specialFuBen(){
   if(hasText('桃花')){
     findTextAndClick('桃花')
-    sleep(10000)
-    
+    sleep(7000)
     if(isHasImageTemplate('commonBtn.jpg')){
       clickImageTemplate('commonBtn.jpg',{region:'rightBottomHalf',isRepeat:true});
     }else{
@@ -38,8 +37,7 @@ function specialFuBen(){
   }else if(hasText('如梦')){
   // 绿烟如梦是没有普通字眼的
     findTextAndClick('如梦')
-    sleep(10000)
-    
+    sleep(7000)
     if(isHasImageTemplate('commonBtn.jpg')){
       clickImageTemplate('commonBtn.jpg',{region:'rightBottomHalf',isRepeat:true});
     }else{
@@ -61,43 +59,55 @@ function specialFuBen(){
   }
 }
 
+// jian
 // 普通
 function taoHaiQu(){
   for(let i = 0;i < 3;i++){
-    let res = findTextAndClick('动画',{isRepeat:true,region:'rightHalf'})
-    // 如果没有跳过字眼 则等等下一个普通
-    if(!res){
-      sleep(3000)
-    }else{
+    let time = 0
+    // 重复跳过动画与点击普通按钮动作，万一上一次没有执行成功，需要不断去循环重复执行 如果超过10次还都没有执行成功到下一步 说明代码出错了，直接退出
+    while(!isFighting() && time < 5){
+      let res = findTextAndClick('动画',{isRepeat:true,region:'rightHalf'})
+      // 如果没有跳过字眼 则等等下一个普通
+      if(!res){
+        sleep(3000)
+      }else{
+        sleep(6000)
+      }
+      const res2 = findTextAndClick('普通',{isRepeat:true,region:'rightHalf'});
       sleep(6000)
-    }
-    const res2 = findTextAndClick('普通',{isRepeat:true,region:'rightHalf'});
-    sleep(6000)
-    if(!res2){
-      specialFuBen()
-    }else{
-      let res3 = clickImageTemplate('commonBtn.jpg',{region:'rightBottomHalf',isRepeat:true});
-      if(!res3){
-        // 如果此时还没有 就是文案太长了 需要自定义文案调整 此处是流沙净 普通处 文案太长了
-        if(hasText('流沙')){
-          findTextAndClick('什么妖怪')
-        }else if(hasText('明珠')){
-
+      if(!res2){
+        specialFuBen()
+      }else{
+        let res3 = clickImageTemplate('commonBtn.jpg',{region:'rightBottomHalf',isRepeat:true});
+        if(!res3){
+          // 如果此时还没有 就是文案太长了 需要自定义文案调整 此处是流沙净 普通处 文案太长了
+          if(hasText('流沙')){
+            findTextAndClick('什么妖怪')
+          }else if(hasText('明珠')){
+  
+          }
         }
       }
+      sleep(1000)
+      time++
+    }
+    if(time>=5){
+      exit()
     }
     isFight()
   }
   sleep(2000)
+
   findTextAndClick('动画',{isRepeat:true,region:'rightHalf'});
 
+  // 桃花有4个怪要打
   if(hasText('桃花')){
     findTextAndClick('桃花')
     sleep(10000)
     clickImageTemplate('commonBtn.jpg',{region:'rightBottomHalf',isRepeat:true});
     isFight()
     findTextAndClick('动画',{isRepeat:true,region:'rightHalf'});
-    sleep(7000)
+    sleep(9000)
     findTextAndClick('桃花')
   }
 
@@ -127,17 +137,23 @@ function normalFuBen(){
     sleep(2000)
     clickImageTemplate('changAnCheng.png',{region:'leftTopHalf'})
     sleep(3000)
-    var result = clickImageTemplate('bxxz.jpg')
+    var result = clickImageTemplate('bxxz.jpg',{region:'leftHalf'})
     log(result,'result')
     if(!result){
-      sleep(2000)
-      clickImageTemplate('ytg.jpg')
-      sleep(5000)
-      randomClick()
-      sleep(2000)
-      clickImageTemplate('changAnCheng.png',{region:'leftTopHalf'})
-      sleep(2000)
-      clickImageTemplate('bxxz.jpg')
+      let result2 = clickImageTemplate('xz.png',{region:'leftHalf'});
+      if(!result2){
+        const result3 = clickImageTemplate('xx.png',{region:'leftHalf'})
+        if(!result3){
+          sleep(2000)
+          clickImageTemplate('ytg.jpg')
+          sleep(5000)
+          randomClick()
+          sleep(2000)
+          clickImageTemplate('changAnCheng.png',{region:'leftTopHalf'})
+          sleep(2000)
+          clickImageTemplate('bxxz.jpg')
+        }
+      }
     }
     sleep(7000)
     clickImageTemplate('xuanZheFuBen.jpg',{isRepeat:true})

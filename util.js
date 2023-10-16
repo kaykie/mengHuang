@@ -107,6 +107,7 @@ function pressRect(rect,options) {
   var centerX = rect.bounds.left + width / 2;
   x = Math.round((Math.random() - 0.5) * width * scale + centerX);
   y = Math.round((Math.random() - 0.5) * height * scale + centerY);
+  
   press(x, y,10);
 }
 
@@ -129,9 +130,8 @@ function clickImageTemplate(name,options){
     region:region
   });
   if(!p){
-    toastLog(`未找到${name}的图片`)
+    log(`未找到${name}的图片`)
     if(isRepeat){
-      log('走这了2',p)
       sleep(3000)
       var newImg = captureScreen();
       sleep(200)
@@ -140,21 +140,18 @@ function clickImageTemplate(name,options){
       });
       newImg.recycle()
       if(!p){
-        toastLog(`还是未找到${name}的图片`)
+        log(`还是未找到${name}的图片`)
         return false
       }
     }else{
-      log('走这了')
       return false
     }
   }
-  log('走这了3',p)
   click(p.x + Math.round(imgWidth /4 + Math.random() * imgWidth /4),p.y + Math.round(imgHeight / 4 + Math.random() * imgHeight/4))
   img.recycle();
-
   temp.recycle()
   smallTemp.recycle()
-  log('走这了4',p)
+  log('点击图片',name)
   return true
 }
 
@@ -178,6 +175,7 @@ function isHasImageTemplate(name,options){
   let p = findImage(img,smallTemp,{
     region:region
   });
+  log('是否有模板图片',name,!!p)
   return !!p
 }
 
@@ -202,6 +200,7 @@ function findImageTemplatePoint(name,options){
   img.recycle();
   temp.recycle()
   smallTemp.recycle()
+  log('找目标图片了',name,p)
   return {x:p.x,y:p.y,imgWidth:imgWidth,imgHeight:imgHeight}
 }
 
@@ -236,6 +235,7 @@ function findImageTemplatePoints(name,options){
   let uniqueArray = Array.from(map.keys()).map(key => {
       return {x: parseFloat(key.split(',')[0]), y: parseFloat(key.split(',')[1]),imgWidth:imgWidth,imgHeight:imgHeight}
   });
+  log('找一堆目标图片',name)
   return uniqueArray
 }
 
@@ -278,7 +278,7 @@ function findTextAndClick(text,options){
         clickRect(findArray[index],{text:text})
         return true
       }else{
-        log('没找到')
+        log(text,'没找到')
         return false
       }
       // 回收图片
@@ -301,7 +301,7 @@ function findTextRect(text){
           findArray.push(item)
         }
       })
-      log(findArray)
+      log(text,findArray,'找到的文字列表')
       img.recycle();
       return findArray
       // 回收图片
