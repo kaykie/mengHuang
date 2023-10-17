@@ -1,6 +1,6 @@
 auto();
 
-const {findTextAndClick,isFighting,clickImagePoint,findImageTemplatePoints,isHasImageTemplate,clickRect,randomClick,clickImageTemplate,hasText,findTextRect} = require('util.js')
+const {findTextAndClick,clickClosePoint,isFighting,clickImagePoint,findImageTemplatePoints,isHasImageTemplate,clickRect,randomClick,clickImageTemplate,hasText,findTextRect} = require('util.js')
 
 // 判断是否在战斗中
 function isFight(){
@@ -121,13 +121,7 @@ function taoHaiQu(){
   }
 }
 
-// 如果有X号则点击关闭
-function clickClosePoint(){
-  if(isHasImageTemplate('xhao.jpg')){
-    log('有一个x号，点击关闭')
-    clickImageTemplate('xhao.jpg',{region:'rightBottomHalf'})
-  }
-}
+
 // taoHaiQu()
 
 // 普通副本

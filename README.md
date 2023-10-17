@@ -70,7 +70,7 @@ node 版本 16.14.0；
 <img src="type/home.jpg" width="220px"> 
 <img src="type/action.jpg" width="220px"> 
 
-## 联系方式
+## 联系作者
 
 > 微信 : kaykie0421 ( 欢迎骚扰. 接定制，游戏交流等，备注：梦幻)
 > 手游ID：时空区-天降福宝-重楼

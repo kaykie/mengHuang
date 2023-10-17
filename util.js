@@ -346,6 +346,19 @@ function isFighting(){
   return isHasImageTemplate('isFight.jpg',{region:'leftTopHalf'})
 }
 
+// 如果有X号则点击关闭
+function clickClosePoint(){
+  while(true){
+    if(isHasImageTemplate('xhao.jpg')){
+      log('有一个x号，点击关闭');
+      sleep(1500)
+      clickImageTemplate('xhao.jpg',{region:'rightBottomHalf'})
+    }else{
+      break;
+    }
+  }
+}
+
 module.exports = {
   clickRect,
   findTextAndClick,
@@ -359,5 +372,6 @@ module.exports = {
   pressRect,
   gmlkitOcr,
   isFighting,
-  findImageTemplatePoints
+  findImageTemplatePoints,
+  clickClosePoint
 }
