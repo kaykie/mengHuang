@@ -62,6 +62,7 @@ function specialFuBen(){
 // jian
 // 普通
 function taoHaiQu(){
+  //  一般一个副本只有3次战斗
   for(let i = 0;i < 3;i++){
     let time = 0
     // 重复跳过动画与点击普通按钮动作，万一上一次没有执行成功，需要不断去循环重复执行 如果超过10次还都没有执行成功到下一步 说明代码出错了，直接退出

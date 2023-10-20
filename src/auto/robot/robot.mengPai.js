@@ -16,19 +16,15 @@ function isFight(){
   }
 }
 
-let isLast = false
-
 while(true){
-
-
   if(hasText('闯关-')){
     log('去领取任务了')
     sleep(1000);
-    findTextAndClick('闯关-');
+    findTextAndClick('闯关-',{region:'rightHalf'});
     sleep(5000)
-    clickImageTemplate('mengPaiChuangGuan.jpg');
+    clickImageTemplate('mengPaiChuangGuan.jpg',{region:'rightBottomHalf'});
     sleep(2000)
-    clickImageTemplate('lingQuRenWu.jpg');
+    clickImageTemplate('lingQuRenWu.jpg',{region:'rightBottomHalf'});
     sleep(2500)
   }
   randomClick()
