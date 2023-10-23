@@ -35,10 +35,18 @@ log(uniqueArray)
 
 
 function warp(callback){
-    callback()
+    for(let i = 0;i<10;i++){
+        callback()
+        log(i)
+        if(i === 5){
+            global.robotStop()
+            break;
+        }
+    }
 }
 
 warp(function(){
+    sleep(2000)
     log(666)
 })
 

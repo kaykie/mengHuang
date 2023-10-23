@@ -1,6 +1,6 @@
 auto();
 
-const {findTextAndClick,clickClosePoint,isFighting,clickImagePoint,findImageTemplatePoints,isHasImageTemplate,clickRect,randomClick,clickImageTemplate,hasText,findTextRect} = require('util.js')
+const {findTextAndClick,isFightingCallback,clickClosePoint,isFighting,clickImagePoint,findImageTemplatePoints,isHasImageTemplate,clickRect,randomClick,clickImageTemplate,hasText,findTextRect} = require('util.js')
 
 // 判断是否在战斗中
 function isFight(){
@@ -59,14 +59,14 @@ function specialFuBen(){
   }
 }
 
+
+
 // jian
 // 普通
 function taoHaiQu(){
   //  一般一个副本只有3次战斗
   for(let i = 0;i < 3;i++){
-    let time = 0
-    // 重复跳过动画与点击普通按钮动作，万一上一次没有执行成功，需要不断去循环重复执行 如果超过10次还都没有执行成功到下一步 说明代码出错了，直接退出
-    while(!isFighting() && time < 5){
+    isFightingCallback(function(){
       let res = findTextAndClick('动画',{isRepeat:true,region:'rightHalf'})
       // 如果没有跳过字眼 则等等下一个普通
       if(!res){
@@ -90,12 +90,8 @@ function taoHaiQu(){
         }
       }
       sleep(1000)
-      time++
-    }
-    if(time>=5){
-      exit()
-    }
-    isFight()
+    })
+    // 重复跳过动画与点击普通按钮动作，万一上一次没有执行成功，需要不断去循环重复执行 如果超过10次还都没有执行成功到下一步 说明代码出错了，直接退出
   }
   sleep(2000)
 

@@ -1,15 +1,8 @@
 // 周三召唤灵活动
 auto();
 
-const {findTextAndClick,isHasImageTemplate,clickRect,randomClick,clickImageTemplate,hasText,findTextRect} = require('util.js')
+const {findTextAndClick,isHasImageTemplate,clickClosePoint,randomClick,clickImageTemplate,hasText,findTextRect} = require('util.js')
 
-// 如果有X号则点击关闭
-function clickClosePoint(){
-  if(isHasImageTemplate('xhao.jpg')){
-    log('有一个x号，点击关闭')
-    clickImageTemplate('xhao.jpg',{region:'rightBottomHalf'})
-  }
-}
 function isFight(){
   while(true){
     sleep(5000) // 每隔20秒判断是否在战斗中
