@@ -32,6 +32,24 @@ let uniqueArray = Array.from(map.keys()).map(key => {
     return {x: parseFloat(key.split(',')[0]), y: parseFloat(key.split(',')[1])}
 });
 log(uniqueArray)
+
+
+function warp(callback){
+    for(let i = 0;i<10;i++){
+        callback()
+        log(i)
+        if(i === 5){
+            global.robotStop()
+            break;
+        }
+    }
+}
+
+warp(function(){
+    sleep(2000)
+    log(666)
+})
+
 // 新增：自定义模型路径(必须是绝对路径), files.path() 将相对路径转为绝对路径
 // let myModelPath = files.path("./models");
 // 识别图片中的文字，返回完整识别信息（兼容百度OCR格式）。

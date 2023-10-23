@@ -359,6 +359,8 @@ function clickClosePoint(){
   }
 }
 
+
+
 module.exports = {
   clickRect,
   findTextAndClick,

@@ -48,6 +48,12 @@ export default {
           class: 'bg-purple',
           title: '周三召唤灵',
           icon: 'van-icon-chat-o'
+        },
+        {
+          route: 'paTa',
+          class: 'bg-purple',
+          title: '周五爬塔',
+          icon: 'van-icon-chat-o'
         }
       ],
       isDev:true
