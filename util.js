@@ -346,6 +346,18 @@ function isFighting(){
   return isHasImageTemplate('isFight.jpg',{region:'leftTopHalf'})
 }
 
+// 如果没有在战斗中应该继续执行回调函数
+function isFightingCallback(callback){
+  var time = 0
+  while(!isFighting() && time < 5){
+    callback()
+    time++
+  }
+  if(time>=5){
+    global.robotStop()
+  }
+}
+
 // 如果有X号则点击关闭
 function clickClosePoint(){
   while(true){
@@ -375,5 +387,6 @@ module.exports = {
   gmlkitOcr,
   isFighting,
   findImageTemplatePoints,
-  clickClosePoint
+  clickClosePoint,
+  isFightingCallback
 }
