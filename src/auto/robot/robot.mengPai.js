@@ -19,8 +19,6 @@ function isFight(){
 let isLast = false
 
 while(true){
-
-
   if(hasText('闯关-')){
     log('去领取任务了')
     sleep(1000);

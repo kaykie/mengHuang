@@ -17,7 +17,7 @@ let originImg = images.read("./images/sample3.jpg")
 // log(JSON.stringify(findArr))
 var temp = images.read(`./images/jingRu.jpg`);
 const point = images.matchTemplate(originImg,temp,{
-  max:3
+    max:3
 })
 const pointArr = [];
 let map = new Map();

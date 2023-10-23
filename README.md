@@ -6,9 +6,15 @@
 
 # 项目运行原理
 > 1. 基于autojs开发
-> 2. 基本autojs文字识别gmlkit.ocr(img, "zh");
-> 3. 基于autojs提供的findImage(img, templ);
+> 2. 基本autojs文字识别gmlkit.ocr(img, "zh")，找到相关的文字并点击
+> 3. 基于autojs提供的findImage(img, templ),找到根据提供的图片模板来查找图片，找到图片坐标点后并点击
 > 4. 配合梦幻西游手游中固定操作实现固定的模拟点击
+
+## 运行到手机上
+> 1. 下载release版本：[v1.0.0](https://github.com/kaykie/mengHuang/releases/tag/v1.0.0)（还在迭代中），功能还并不完善，1.0.0版本并非是完善版本
+> 2. 安装到安卓手机上
+> 3. 打开app
+> 4. 给app授予无障碍权限与悬浮窗权限
 
 ## 项目运行
 
@@ -22,7 +28,6 @@ node 版本 16.14.0；
 ## 目前已实现自动化功能
 
 所有功能的前提是在脚本app中先点击相应的任务并点击执行，然后再到梦幻西游手游中点击开始
-
 
 > 1. 自动抢月饼
 

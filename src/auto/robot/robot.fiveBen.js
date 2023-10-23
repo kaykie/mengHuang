@@ -66,19 +66,19 @@ function taoHaiQu(){
     let time = 0
     // 重复跳过动画与点击普通按钮动作，万一上一次没有执行成功，需要不断去循环重复执行 如果超过10次还都没有执行成功到下一步 说明代码出错了，直接退出
     while(!isFighting() && time < 5){
-      let res = findTextAndClick('动画',{isRepeat:true,region:'rightHalf'})
+      let res = findTextAndClick('动画',{region:'rightHalf'})
       // 如果没有跳过字眼 则等等下一个普通
       if(!res){
         sleep(3000)
       }else{
         sleep(6000)
       }
-      const res2 = findTextAndClick('普通',{isRepeat:true,region:'rightHalf'});
+      const res2 = findTextAndClick('普通',{region:'rightHalf'});
       sleep(6000)
       if(!res2){
         specialFuBen()
       }else{
-        let res3 = clickImageTemplate('commonBtn.jpg',{region:'rightBottomHalf',isRepeat:true});
+        let res3 = clickImageTemplate('commonBtn.jpg',{region:'rightBottomHalf'});
         if(!res3){
           // 如果此时还没有 就是文案太长了 需要自定义文案调整 此处是流沙净 普通处 文案太长了
           if(hasText('流沙')){
