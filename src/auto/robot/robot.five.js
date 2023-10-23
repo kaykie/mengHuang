@@ -9,27 +9,9 @@ const ratioY = device.height/2400
 log(ratioX,ratioY)
 
 
-// sleep(3000)
-
-// home();
-
-// sleep(2000)
-
-// home()
-
-// sleep(2000)
-
 var params = global.WEB_PARAMS.params
-// var btn = text('梦幻西游').findOne();
 
-// var center = btn.bounds();
-// try{
-//   click(center.centerX(),center.centerY()- 200)
-// }catch(err){
-//   log(err)
-// }
-
-sleep(5000)
+sleep(1000);
 
 for(var i = 0;i< 100;i++){
   if(isFighting()){

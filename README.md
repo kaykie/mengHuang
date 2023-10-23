@@ -22,8 +22,10 @@ node 版本 16.14.0；
 参考autojs运行方式
 
 > 一. `npm install`
-
+>
 > 二. `npm run serve`
+> 
+> 三. autojs运行方式 参考autojs[文档](https://github.com/kkevsekk1/AutoX)
 
 ## 目前已实现自动化功能
 
@@ -33,7 +35,7 @@ node 版本 16.14.0；
 
   使用前置：需要手动调整到购买页面，应用脚本判断当前是否有月饼，如果有则会购买，如果没有则会点击 中秋月饼 这4个字 再点击中秋月饼刷新列表
 
-<img src="type/qizhenyibao.jpg" width="360px">
+<img src="images/type/qizhenyibao.jpg" width="360px">
 
   视频：
   > [梦幻西游手游自动抢月饼脚本，无需root，项目已开源至github](https://www.bilibili.com/video/BV1kN411t7Wd/)
@@ -41,7 +43,7 @@ node 版本 16.14.0；
 > 2. 自动无限鬼
   
   使用前置：需要领取捉鬼任务,再点击开始，脚本会识别捉鬼任务并点击，在捉完一轮后会自动进行下一轮
-<img src="type/zhuagui.jpg" width="360px">
+<img src="images/type/zhuagui.jpg" width="360px">
 
 > 3. 自动三本
    使用前置：需要位于长安城，脚本流程 点击左上角长安城=>点击百晓仙子 => 点击选择副本 => 点击进入 => 副本固定流程 => 副本结束 => 重回长安城 => 再次点左上角击长安城 =>...
@@ -72,8 +74,8 @@ node 版本 16.14.0；
 `添加执行任务过程中出错判断`
 ## 截图
 
-<img src="type/home.jpg" width="220px"> 
-<img src="type/action.jpg" width="220px"> 
+<img src="images/type/home.jpg" width="220px"> 
+<img src="images/type/action.jpg" width="220px"> 
 
 ## 联系作者
 
