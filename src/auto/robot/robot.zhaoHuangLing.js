@@ -1,7 +1,7 @@
 // 周三召唤灵活动
 auto();
 
-const {findTextAndClick,isHasImageTemplate,clickRect,randomClick,clickImageTemplate,hasText,findTextRect} = require('util.js')
+const {findTextAndClick,isHasImageTemplate,isFightingCallback,randomClick,clickImageTemplate,hasText,findTextRect} = require('util.js')
 
 // 如果有X号则点击关闭
 function clickClosePoint(){
@@ -24,21 +24,17 @@ while(true){
   randomClick()
   clickClosePoint()
   sleep(500)
-  let res = findTextAndClick('周常',{region:'rightTopHalf'})
-  if(!res){
-    findTextAndClick('召唤',{region:'rightTopHalf'})
-  }
-  sleep(7000)
-  let res2 = clickImageTemplate('commonBtn.jpg',{region:'rightBottomHalf',isRepeat:true})
-  if(res2){
-    let res3 = hasText('移动')
-    if(res3){
-      sleep(6000)
+  isFightingCallback(function(){
+    let res = findTextAndClick('周常',{region:'rightTopHalf'})
+    if(!res){
+      findTextAndClick('召唤',{region:'rightTopHalf'})
     }
-  }
+    sleep(6000)
+    clickImageTemplate('commonBtn.jpg',{region:'rightBottomHalf',isRepeat:true})
+    sleep(1000)
+  })
   const minutes = new Date().getMinutes()
   if(minutes >= 40){
     break;
   }
 }
-exit()
