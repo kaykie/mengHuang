@@ -25,6 +25,6 @@
     "libjackpal-termexec2.so"
   ],
   "packageName": "com.example",
-  "versionName": "1.0.0",
+  "versionName": "0.0.2",
   "versionCode": 1
 }
