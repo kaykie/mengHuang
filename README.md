@@ -11,10 +11,12 @@
 > 4. 配合梦幻西游手游中固定操作实现固定的模拟点击
 
 ## 运行到手机上
-> 1. 下载release版本：[v1.0.0](https://github.com/kaykie/mengHuang/releases/tag/v1.0.0)（还在迭代中），功能还并不完善，1.0.0版本并非是完善版本
+> 1. 下载release版本：[v0.0.3](https://github.com/kaykie/mengHuang/releases)（还在迭代中）
 > 2. 安装到安卓手机上
 > 3. 打开app
 > 4. 给app授予无障碍权限与悬浮窗权限
+安装视频：
+
 
 ## 项目运行
 

@@ -20,7 +20,7 @@ while(true){
   sleep(500)
   let res = findTextAndClick('周常',{region:'rightTopHalf'})
   if(!res){
-    const res3 = findTextAndClick('迷魂',{region:'rightTopHalf'})
+    let res3 = findTextAndClick('迷魂',{region:'rightTopHalf'})
     if(!res3){
       unFindTime++
     }
