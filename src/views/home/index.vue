@@ -22,7 +22,7 @@ export default {
         {
           route: 'fiveBen',
           class: 'bg-mauve',
-          title: '自动5本',
+          title: '自动3本',
           icon: 'van-icon-chat-o'
         },
         {

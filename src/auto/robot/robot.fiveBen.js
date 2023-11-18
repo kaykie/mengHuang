@@ -2,6 +2,8 @@ auto();
 
 const {findTextAndClick,isFightingCallback,clickClosePoint,isFighting,clickImagePoint,findImageTemplatePoints,isHasImageTemplate,clickRect,randomClick,clickImageTemplate,hasText,findTextRect} = require('util.js')
 
+toastLog('即将开始自动三本啦')
+sleep(2000)
 // 判断是否在战斗中
 function isFight(){
   while(true){
