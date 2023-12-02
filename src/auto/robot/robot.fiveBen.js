@@ -122,8 +122,6 @@ function taoHaiQu(){
 }
 
 
-// taoHaiQu()
-
 // 普通副本
 function normalFuBen(){
   for(var i = 0;i<3;i++){

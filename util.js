@@ -343,7 +343,7 @@ function hasText(text){
 
 // 判断是否在战斗中
 function isFighting(){
-  return isHasImageTemplate('isFight.jpg',{region:'leftTopHalf'})
+  return isHasImageTemplate('fighting.jpg',{region:'rightBottomHalf'}) || isHasImageTemplate('fighting2.jpg',{region:'rightBottomHalf'})
 }
 
 // 如果没有在战斗中应该继续执行回调函数

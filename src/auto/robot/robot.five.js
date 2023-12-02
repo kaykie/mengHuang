@@ -25,9 +25,8 @@ for(var i = 0;i< 100;i++){
       findTextAndClick('捉拿',{region:'rightHalf'})
     }
   }
-  sleep(15000)
+  sleep(8000)
   if(!isFighting()){
-    clickClosePoint()
     sleep(2000);
     toastLog(`再次来了，开始第${i+1}轮鬼`)
     findTextAndClick('日常-',{region:'rightHalf'})
@@ -38,17 +37,19 @@ for(var i = 0;i< 100;i++){
     }
   }
 
-  sleep(9 * 60 * 1000)
   while(true){
     if(hasText('少侠已经')){
+      clickClosePoint()
       break;
     }
-    sleep(25 * 1000)
+    sleep(20 * 1000)
   }
   findTextAndClick('确定');
+  sleep(2000)
+  clickClosePoint()
   sleep(8000)
   clickImageTemplate('zgrw.png',{region:'rightHalf'});
-  sleep(15000)
+  sleep(10000)
   randomClick()
 
 }
