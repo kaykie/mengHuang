@@ -19,6 +19,8 @@
           开始捉鬼
         </van-button>
       </div>
+      <h4>脚本执行流程：</h4>
+      <p></p>
     </van-form>
   </div>
 </template>
