@@ -7,7 +7,7 @@ sleep(2000)
 // 判断是否在战斗中
 function isFight(){
   while(true){
-    sleep(20000) // 每隔20秒判断是否在战斗中
+    sleep(10000) // 每隔20秒判断是否在战斗中
     if(!isFighting()){
       break;
     }

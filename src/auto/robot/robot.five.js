@@ -46,12 +46,11 @@ for(var i = 0;i< 100;i++){
   }
   findTextAndClick('确定');
   sleep(2000)
-  clickClosePoint()
   sleep(8000)
   clickImageTemplate('zgrw.png',{region:'rightHalf'});
   sleep(10000)
   randomClick()
-
+  clickClosePoint()
 }
 
 exit()
