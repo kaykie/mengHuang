@@ -328,14 +328,23 @@ function randomClick(){
 }
 
 // 判断当前是否存在文字
-function hasText(text){
-  var img = captureScreen();
-  if (img) {
-      var result = gmlkit.ocr(img,'zh');
-      var a = result.find(3,e => e.text.indexOf(text) >= 0)
+function hasText(text,options){
+  if(!options) options = {}
+  let region = options.region || ''
+  var originImg = captureScreen();
+  if (originImg) {
+      let img = images.grayscale(originImg)
+      let arr = gmlkitOcr(img,{region:region});
+      let findArray = []
+      arr.forEach(item =>{
+        if(item.text.indexOf(text) >= 0){
+          findArray.push(item)
+        }
+      })
+      console.log(findArray)
       // 回收图片
       img.recycle();
-      return !!a
+      return findArray.length > 0
   } else {
       log("截图失败");
   }
@@ -350,8 +359,12 @@ function isFighting(){
 function isFightingCallback(callback){
   var time = 0
   while(!isFighting() && time < 5){
-    callback()
+    log('执行'+ time + '次检测是否战斗任务')
+    var res = callback()
     time++
+    if(res){
+      break;
+    }
   }
   if(time>=5){
     global.robotStop()

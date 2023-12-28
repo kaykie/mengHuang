@@ -9,7 +9,7 @@
     <van-button round block @click="startNow" type="primary" native-type="submit">
       开始执行三本
     </van-button>
-    <p>注：由于大多副本都是只有三次战斗，所以脚本逻辑中只会执行三次战斗，所以如果打不过的话，建议还是手动的好。</p>
+    <p>注：上一个版本只战斗3次的问题已修复，目前只要打不过会重复执行</p>
   </div>
 </template>
 <script>

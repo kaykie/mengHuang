@@ -39,9 +39,10 @@ for(var i = 0;i< 100;i++){
 
   while(true){
     if(hasText('少侠已经')){
-      clickClosePoint()
       break;
     }
+    clickClosePoint()
+    log('还在捉鬼中...')
     sleep(20 * 1000)
   }
   findTextAndClick('确定');

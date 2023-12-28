@@ -2,7 +2,7 @@ auto();
 
 const {findTextAndClick,isFightingCallback,clickClosePoint,isFighting,clickImagePoint,findImageTemplatePoints,isHasImageTemplate,clickRect,randomClick,clickImageTemplate,hasText,findTextRect} = require('util.js')
 
-toastLog('即将开始自动三本啦')
+toastLog('即将开始自动三本啦!!')
 sleep(2000)
 // 判断是否在战斗中
 function isFight(){
@@ -68,7 +68,20 @@ function specialFuBen(){
 function taoHaiQu(){
   //  一般一个副本只有3次战斗,如果回到了长安城 需要跳出循环
   for(let i = 0;i < 10;i++){
+    // 如何检测到了长安城 则跳出 
+    if(!hasText('动画') && isHasImageTemplate('changAnCheng.png',{region:'leftTopHalf'})){
+      log('检测到长安城了')
+      break;
+    }else{
+      log('未检测到长安城')
+    }
     isFightingCallback(function(){
+      if(!hasText('动画') && isHasImageTemplate('changAnCheng.png',{region:'leftTopHalf'})){
+        log('检测到长安城了3')
+        return true
+      }else{
+        log('未检测到长安城3')
+      }
       let res = findTextAndClick('动画',{isRepeat:true,region:'rightHalf'})
       // 如果没有跳过字眼 则等等下一个普通
       if(!res){
@@ -91,11 +104,15 @@ function taoHaiQu(){
           }
         }
       }
+      
       sleep(1000)
     })
     // 如何检测到了长安城 则跳出 
-    if(isHasImageTemplate('changAnCheng.png',{region:'leftTopHalf'})){
+    if(!hasText('动画') && isHasImageTemplate('changAnCheng.png',{region:'leftTopHalf'})){
+      log('检测到长安城了2')
       break;
+    }else{
+      log('未检测到长安城了2')
     }
     isFight()
     // 重复跳过动画与点击普通按钮动作，万一上一次没有执行成功，需要不断去循环重复执行 如果超过10次还都没有执行成功到下一步 说明代码出错了，直接退出
@@ -105,7 +122,8 @@ function taoHaiQu(){
 
 // 普通副本
 function normalFuBen(){
-  for(var i = 0;i<3;i++){
+  for(var i = 1;i<3;i++){
+    log('执行第'+ (i+1) +'个副本任务！')
     clickClosePoint()
     sleep(2000)
     clickImageTemplate('changAnCheng.png',{region:'leftTopHalf'})
@@ -138,6 +156,8 @@ function normalFuBen(){
     taoHaiQu()
   }
 }
+log(111111)
+sleep(2000)
 normalFuBen()
 // 侠士副本
 function xiaShiFuBen(){
@@ -150,19 +170,22 @@ function xiaShiFuBen(){
     const arr = findTextRect('进入');
     clickRect(arr[i],{})
     sleep(5000)
-    for(let i = 0;i<3;i++){
+    for(let i = 0;i<10;i++){
       const res = findTextAndClick('跳过',{isRepeat:true})
       sleep(7000)
-      findTextAndClick('侠士',{region:'rightHalf'})
-      sleep(5000)
+      const res2 = findTextAndClick('侠士',{region:'rightHalf'})
+      if(!res2){
+        specialFuBen()
+      }else{
+        sleep(5000)
+      }
       clickImageTemplate('commonBtn.jpg',{region:'rightBottomHalf'});
+      // 如何检测到了长安城 则跳出 
+      if(isHasImageTemplate('changAnCheng.png',{region:'leftTopHalf'})){
+        break;
+      }
       isFight()
     }
-    // 战斗中
-    findTextAndClick('跳过');
-    // 播放诗外加奖励
-    sleep(15000)
-    findTextAndClick('侠士',{region:'rightHalf'})
     sleep(3000)
   }
 }
