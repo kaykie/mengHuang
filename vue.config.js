@@ -10,9 +10,8 @@ module.exports = {
   publicPath: process.env.NODE_ENV == 'production' ? './' : '/',
   devServer: {
     open: true,
-    host: '0.0.0.0',
     port: 5666,
-    openPage: '#/',
+    hot:true,
     before: app => { },
   },
   css: {

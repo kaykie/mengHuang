@@ -54,6 +54,12 @@ export default {
           class: 'bg-purple',
           title: '周五爬塔',
           icon: 'van-icon-chat-o'
+        },
+        {
+          route: 'qiang',
+          class: 'bg-cyan',
+          title: '抢铅',
+          icon: 'van-icon-chat-o'
         }
       ],
       isDev:true
