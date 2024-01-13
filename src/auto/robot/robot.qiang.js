@@ -43,9 +43,7 @@ while(true){
     if(yueBingPoint.bounds){
       clickImagePoint(yueBingPoint);
     }else{
-      yueBingPoint = findImageTemplatePoint('qiang.jpg',{
-        region:'leftHalf'
-      })
+      yueBingPoint = findImageTemplatePoint('qiang.jpg')
       clickImagePoint(yueBingPoint)
     }
     sleep(100);

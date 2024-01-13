@@ -192,6 +192,8 @@ function findImageTemplatePoint(name,options){
   var imgWidth = temp.getWidth(),imgHeight = temp.getHeight();
   var hRatio = device.height / 2400;
   var wRatio = device.width / 1080;
+  log(hRatio,wRatio)
+  
   var smallTemp = images.scale(temp,hRatio,wRatio)
   let p = findImage(img,smallTemp,{
     region:region,

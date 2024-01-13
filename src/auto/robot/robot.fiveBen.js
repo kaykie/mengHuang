@@ -122,7 +122,7 @@ function taoHaiQu(){
 
 // 普通副本
 function normalFuBen(){
-  for(var i = 1;i<3;i++){
+  for(var i = 0;i<3;i++){
     log('执行第'+ (i+1) +'个副本任务！')
     clickClosePoint()
     sleep(2000)
