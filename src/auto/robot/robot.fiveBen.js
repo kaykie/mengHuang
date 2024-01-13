@@ -156,7 +156,6 @@ function normalFuBen(){
     taoHaiQu()
   }
 }
-log(111111)
 sleep(2000)
 normalFuBen()
 // 侠士副本
