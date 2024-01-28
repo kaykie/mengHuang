@@ -47,6 +47,11 @@ const routes = [
     name: 'paTa',
     component: () => import('./views/home/paTa.vue'),
   },
+  {
+    path: '/qiang',
+    name: 'qiang',
+    component: () => import('./views/home/qiang.vue'),
+  },
 ]
 const router = createRouter({
   history: createWebHashHistory(),

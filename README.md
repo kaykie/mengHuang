@@ -11,6 +11,10 @@
 > 3. 基于autojs提供的findImage(img, templ),找到根据提供的图片模板来查找图片，找到图片坐标点后并点击
 > 4. 配合梦幻西游手游中固定操作实现固定的模拟点击
 
+# 注意事项
+> 1. 脚本在执行的过程中不要操作手机，否则会导致脚本执行中断与出错
+> 2. 脚本是基于图片识别与文字识别的，所以一旦在执行的过程中操作会导致脚本执行出错
+
 ## 运行到手机上
 > 1. 下载release版本：[v0.0.3](https://github.com/kaykie/mengHuang/releases)（还在迭代中）
 > 2. 安装到安卓手机上
@@ -87,10 +91,6 @@ node 版本 16.14.0；
 <img src="images/type/home.jpg" width="220px"> 
 <img src="images/type/action.jpg" width="220px"> 
 
-## 联系作者
-
-> 微信 : kaykie0421 ( 欢迎骚扰. 接定制，游戏交流等，备注：梦幻)
-> 手游ID：时空区-天降福宝-重楼
 
 ## 框架中用到的开源项目
 脚手架工具：https://github.com/msdog/vue-autojs @msdog

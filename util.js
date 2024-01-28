@@ -192,6 +192,8 @@ function findImageTemplatePoint(name,options){
   var imgWidth = temp.getWidth(),imgHeight = temp.getHeight();
   var hRatio = device.height / 2400;
   var wRatio = device.width / 1080;
+  log(hRatio,wRatio)
+  
   var smallTemp = images.scale(temp,hRatio,wRatio)
   let p = findImage(img,smallTemp,{
     region:region,
@@ -328,14 +330,23 @@ function randomClick(){
 }
 
 // 判断当前是否存在文字
-function hasText(text){
-  var img = captureScreen();
-  if (img) {
-      var result = gmlkit.ocr(img,'zh');
-      var a = result.find(3,e => e.text.indexOf(text) >= 0)
+function hasText(text,options){
+  if(!options) options = {}
+  let region = options.region || ''
+  var originImg = captureScreen();
+  if (originImg) {
+      let img = images.grayscale(originImg)
+      let arr = gmlkitOcr(img,{region:region});
+      let findArray = []
+      arr.forEach(item =>{
+        if(item.text.indexOf(text) >= 0){
+          findArray.push(item)
+        }
+      })
+      console.log(findArray)
       // 回收图片
       img.recycle();
-      return !!a
+      return findArray.length > 0
   } else {
       log("截图失败");
   }
@@ -343,15 +354,19 @@ function hasText(text){
 
 // 判断是否在战斗中
 function isFighting(){
-  return isHasImageTemplate('isFight.jpg',{region:'leftTopHalf'})
+  return isHasImageTemplate('fighting.jpg',{region:'rightBottomHalf'}) || isHasImageTemplate('fighting2.jpg',{region:'rightBottomHalf'})
 }
 
 // 如果没有在战斗中应该继续执行回调函数
 function isFightingCallback(callback){
   var time = 0
   while(!isFighting() && time < 5){
-    callback()
+    log('执行'+ time + '次检测是否战斗任务')
+    var res = callback()
     time++
+    if(res){
+      break;
+    }
   }
   if(time>=5){
     global.robotStop()

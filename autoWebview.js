@@ -5,7 +5,7 @@ initUi('http://192.168.31.227:5666/')
 // initUi('http://172.21.32.205:5666/')
 
 // 二.上线
-// initUi('https://www.xiaye0.com/mh')
+// initUi(`https://www.xiaye0.com/mh?timestamp=${new Date().getTime()}`)
 
 /**
  * 初始化 UI

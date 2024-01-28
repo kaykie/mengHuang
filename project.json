@@ -24,7 +24,7 @@
     "libjackpal-androidterm5.so",
     "libjackpal-termexec2.so"
   ],
-  "packageName": "com.example",
-  "versionName": "0.0.2",
+  "packageName": "com.menghuanjiaoben",
+  "versionName": "0.0.7",
   "versionCode": 1
 }
