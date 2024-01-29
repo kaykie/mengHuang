@@ -61,22 +61,24 @@ function specialFuBen(){
   }
 }
 
-
-
+// 是否已经结束
+function isOver(){
+  return !hasText('动画') && isHasImageTemplate('changAnCheng.png',{region:'leftTopHalf'})
+}
 // jian
 // 普通
 function taoHaiQu(){
   //  一般一个副本只有3次战斗,如果回到了长安城 需要跳出循环
-  for(let i = 0;i < 10;i++){
+  for(let i = 0;i < 15;i++){
     // 如何检测到了长安城 则跳出 
-    if(!hasText('动画') && isHasImageTemplate('changAnCheng.png',{region:'leftTopHalf'})){
+    if(isOver()){
       log('检测到长安城了')
       break;
     }else{
       log('未检测到长安城')
     }
     isFightingCallback(function(){
-      if(!hasText('动画') && isHasImageTemplate('changAnCheng.png',{region:'leftTopHalf'})){
+      if(isOver()){
         log('检测到长安城了3')
         return true
       }else{
@@ -108,7 +110,7 @@ function taoHaiQu(){
       sleep(1000)
     })
     // 如何检测到了长安城 则跳出 
-    if(!hasText('动画') && isHasImageTemplate('changAnCheng.png',{region:'leftTopHalf'})){
+    if(isOver()){
       log('检测到长安城了2')
       break;
     }else{
@@ -156,14 +158,13 @@ function normalFuBen(){
     taoHaiQu()
   }
 }
-sleep(2000)
-normalFuBen()
+
 // 侠士副本
 function xiaShiFuBen(){
   log('执行侠士副本')
-  findTextAndClick('侠士',{region:'rightHalf'})
-  sleep(7000)
   for(let i =0;i<2;i++){
+    findTextAndClick('侠士',{region:'rightHalf'})
+    sleep(4000)
     clickClosePoint();
     sleep(1000)
     const arr = findTextRect('进入');
@@ -176,11 +177,11 @@ function xiaShiFuBen(){
       if(!res2){
         specialFuBen()
       }else{
-        sleep(5000)
+        sleep(8000)
       }
       clickImageTemplate('commonBtn.jpg',{region:'rightBottomHalf'});
       // 如何检测到了长安城 则跳出 
-      if(isHasImageTemplate('changAnCheng.png',{region:'leftTopHalf'})){
+      if(isOver()){
         break;
       }
       isFight()
@@ -188,4 +189,9 @@ function xiaShiFuBen(){
     sleep(3000)
   }
 }
-// xiaShiFuBen()
+sleep(2000)
+
+xiaShiFuBen()
+sleep(2000)
+
+normalFuBen()
