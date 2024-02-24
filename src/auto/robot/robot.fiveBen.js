@@ -15,6 +15,17 @@ function isFight(){
   }
 }
 
+// 在副本战斗中，在点击进入战斗的时候 可能会出现对话  需要快速跳过
+function isFuBengFight(){
+  if(isHasImageTemplate('fuBengFight.jpg')){
+    // 因为副本在进入在战斗的时候 可能会出现对话
+    for(var i = 0; i<8;i++){
+      randomClick()
+      sleep(800)
+    }
+  }
+}
+
 var params = global.WEB_PARAMS.params
 
 // 非普通 一些特殊情况执行
@@ -97,10 +108,10 @@ function taoHaiQu(){
       if(!res){
         sleep(3000)
       }else{
-        sleep(6000)
+        sleep(5000)
       }
       const res2 = findTextAndClick('普通',{region:'rightHalf'});
-      sleep(6000)
+      sleep(5000)
       if(!res2){
         specialFuBen()
       }else{
@@ -115,10 +126,7 @@ function taoHaiQu(){
         }
       }
       sleep(1000)
-      // 因为副本在进入在战斗的时候 可能会出现对话
-      for(var i = 0; i<8;i++){
-        randomClick()
-      }
+      isFuBengFight()
     })
     // 如何检测到了长安城 则跳出 
     if(isOver()){
@@ -184,21 +192,16 @@ function xiaShiFuBen(){
     sleep(5000)
     for(let i = 0;i<10;i++){
       const res = findTextAndClick('跳过',{isRepeat:true})
-      sleep(7000)
+      sleep(5000)
       const res2 = findTextAndClick('侠士',{region:'rightHalf'})
       if(!res2){
         specialFuBen()
       }else{
-        sleep(8000)
+        sleep(5000)
       }
       clickImageTemplate('commonBtn.jpg',{region:'rightBottomHalf'});
       sleep(1500);
-      if(isHasImageTemplate('')){
-        // 因为副本在进入在战斗的时候 可能会出现对话
-        for(var i = 0; i<8;i++){
-          randomClick()
-        }
-      }
+      isFuBengFight()
       // 如何检测到了长安城 则跳出 
       if(isOver()){
         break;
