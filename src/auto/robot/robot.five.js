@@ -3,7 +3,7 @@ var h = device.height;
 var w = device.width;
 // setScreenMetrics(w,h);
 
-const {findTextAndClick,clickClosePoint,isFighting,randomClick,clickImageTemplate,hasText} = require('util.js')
+const {findTextAndClick,clickClosePoint,isFighting,randomClick,clickImageTemplate,isHasImageTemplate,hasText} = require('util.js')
 const ratioX = device.width/1800
 const ratioY = device.height/2400
 log(ratioX,ratioY)
@@ -19,6 +19,13 @@ for(var i = 0;i< 100;i++){
   }else{
     toastLog(`开始第${i+1}轮鬼`)
     findTextAndClick('日常-',{region:'rightHalf'})
+    // TODO
+    if(!hasText('日常-')){
+      sleep(2000)
+      clickImageTemplate('renwu.jpg',{region:'rightHalf'})
+      sleep(2000)
+      findTextAndClick('日常-',{region:'rightHalf'})
+    }
     sleep(10000)
     // 如果10秒后还没有在战斗中 说明没有点击到任务
     if(!isFighting()){
@@ -49,6 +56,7 @@ for(var i = 0;i< 100;i++){
   sleep(2000)
   sleep(8000)
   clickImageTemplate('zgrw.png',{region:'rightHalf'});
+  
   sleep(10000)
   randomClick()
   clickClosePoint()

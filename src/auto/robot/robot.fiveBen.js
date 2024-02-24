@@ -15,11 +15,13 @@ function isFight(){
   }
 }
 
+var params = global.WEB_PARAMS.params
+
 // 非普通 一些特殊情况执行
 function specialFuBen(){
   if(hasText('桃花')){
     findTextAndClick('桃花')
-    sleep(7000)
+    sleep(6000)
     if(isHasImageTemplate('commonBtn.jpg')){
       clickImageTemplate('commonBtn.jpg',{region:'rightBottomHalf',isRepeat:true});
     }else{
@@ -39,7 +41,7 @@ function specialFuBen(){
   }else if(hasText('如梦')){
   // 绿烟如梦是没有普通字眼的
     findTextAndClick('如梦')
-    sleep(7000)
+    sleep(6000)
     if(isHasImageTemplate('commonBtn.jpg')){
       clickImageTemplate('commonBtn.jpg',{region:'rightBottomHalf',isRepeat:true});
     }else{
@@ -56,6 +58,12 @@ function specialFuBen(){
       sleep(3000)
       clickImageTemplate('commonBtn.jpg',{region:'rightBottomHalf',isRepeat:true});
     }
+  }else if(hasText('')){
+    findTextAndClick('隐藏任务')
+    sleep(5000)
+    if(isHasImageTemplate('commonBtn.jpg')){
+      clickImageTemplate('commonBtn.jpg',{region:'rightBottomHalf',isRepeat:true});
+    }
   }else{
     randomClick()
   }
@@ -63,7 +71,7 @@ function specialFuBen(){
 
 // 是否已经结束
 function isOver(){
-  return !hasText('动画') && isHasImageTemplate('changAnCheng.png',{region:'leftTopHalf'})
+  return !hasText('动画') && isHasImageTemplate('guaji.jpg',{region:'leftTopHalf'})
 }
 // jian
 // 普通
@@ -106,8 +114,11 @@ function taoHaiQu(){
           }
         }
       }
-      
       sleep(1000)
+      // 因为副本在进入在战斗的时候 可能会出现对话
+      for(var i = 0; i<8;i++){
+        randomClick()
+      }
     })
     // 如何检测到了长安城 则跳出 
     if(isOver()){
@@ -163,11 +174,12 @@ function normalFuBen(){
 function xiaShiFuBen(){
   log('执行侠士副本')
   for(let i =0;i<2;i++){
+    clickClosePoint();
     findTextAndClick('侠士',{region:'rightHalf'})
     sleep(4000)
-    clickClosePoint();
     sleep(1000)
     const arr = findTextRect('进入');
+    log(arr);
     clickRect(arr[i],{})
     sleep(5000)
     for(let i = 0;i<10;i++){
@@ -180,6 +192,13 @@ function xiaShiFuBen(){
         sleep(8000)
       }
       clickImageTemplate('commonBtn.jpg',{region:'rightBottomHalf'});
+      sleep(1500);
+      if(isHasImageTemplate('')){
+        // 因为副本在进入在战斗的时候 可能会出现对话
+        for(var i = 0; i<8;i++){
+          randomClick()
+        }
+      }
       // 如何检测到了长安城 则跳出 
       if(isOver()){
         break;
@@ -191,7 +210,16 @@ function xiaShiFuBen(){
 }
 sleep(2000)
 
-xiaShiFuBen()
-sleep(2000)
 
-normalFuBen()
+if(params.check.length === 2){
+  xiaShiFuBen()
+  sleep(2000)
+  normalFuBen()
+}else{
+  if(params.check.includes('3')){
+    normalFuBen()
+  }else{
+    xiaShiFuBen()
+  }
+}
+

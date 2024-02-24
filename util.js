@@ -375,7 +375,8 @@ function isFightingCallback(callback){
 
 // 如果有X号则点击关闭
 function clickClosePoint(){
-  while(true){
+  var time = 0;
+  while(true && time < 5){
     if(isHasImageTemplate('xhao.jpg')){
       log('有一个x号，点击关闭');
       sleep(1500)
@@ -387,6 +388,7 @@ function clickClosePoint(){
     }else{
       break;
     }
+    time++
   }
 }
 
