@@ -140,38 +140,56 @@ function taoHaiQu(){
   }
 }
 
+// 到选择普通副本流程
+function normalEnterToSelect(){
+  clickImageTemplate('changAnCheng.png',{region:'leftTopHalf'})
+  sleep(1500)
+  var result = clickImageTemplate('bxxz.jpg',{region:'leftHalf'})
+  log(result,'result')
+  
+  if(!result){
+    let result2 = clickImageTemplate('xz.png',{region:'leftHalf'});
+    if(!result2){
+      const result3 = clickImageTemplate('xx.png',{region:'leftHalf'})
+      if(!result3){
+        sleep(2000)
+        clickImageTemplate('ytg.jpg')
+        sleep(5000)
+        randomClick()
+        sleep(2000)
+        clickImageTemplate('changAnCheng.png',{region:'leftTopHalf'})
+        sleep(2000)
+        clickImageTemplate('bxxz.jpg')
+      }
+    }
+  }
+  sleep(7000)
+  clickImageTemplate('xuanZheFuBen.jpg',{isRepeat:true})
+  sleep(2000)
+  var arr = findImageTemplatePoints('jingRu.jpg');
+  log(arr,'arr');
+  return arr
+}
 
 // 普通副本
 function normalFuBen(){
   for(var i = 0;i<3;i++){
     log('执行第'+ (i+1) +'个副本任务！')
     clickClosePoint()
-    sleep(2000)
-    clickImageTemplate('changAnCheng.png',{region:'leftTopHalf'})
-    sleep(3000)
-    var result = clickImageTemplate('bxxz.jpg',{region:'leftHalf'})
-    log(result,'result')
-    if(!result){
-      let result2 = clickImageTemplate('xz.png',{region:'leftHalf'});
-      if(!result2){
-        const result3 = clickImageTemplate('xx.png',{region:'leftHalf'})
-        if(!result3){
-          sleep(2000)
-          clickImageTemplate('ytg.jpg')
-          sleep(5000)
-          randomClick()
-          sleep(2000)
-          clickImageTemplate('changAnCheng.png',{region:'leftTopHalf'})
-          sleep(2000)
-          clickImageTemplate('bxxz.jpg')
+    sleep(1500)
+    
+    var arr = normalEnterToSelect()
+    if(arr.length === 0){
+      for(var j = 0;j<4;j++){
+        randomClick();
+        sleep(1500);
+        arr = normalEnterToSelect()
+        if(arr.length >=3){
+          break;
         }
       }
+      
     }
-    sleep(7000)
-    clickImageTemplate('xuanZheFuBen.jpg',{isRepeat:true})
-    sleep(2000)
-    const arr = findImageTemplatePoints('jingRu.jpg');
-    log(arr,'arr');
     clickImagePoint(arr[i])
     sleep(3000)
     taoHaiQu()
@@ -185,23 +203,43 @@ function xiaShiFuBen(){
     clickClosePoint();
     findTextAndClick('侠士',{region:'rightHalf'})
     sleep(4000)
-    sleep(1000)
-    const arr = findTextRect('进入');
-    log(arr);
+    const originArr = findTextRect('进入');
+    var arr = originArr.filter(item => item.text === '进入')
+    log(arr,'找到的进入数组');
+    // 如果此处没有找到进入的文案 则循环执行4次 直到找到进入的字眼
+    if(arr.length === 0){
+      for(var j = 0;j<4;j++){
+        randomClick()
+        sleep(1000)
+        findTextAndClick('侠士',{region:'rightHalf'})
+        var againArr = findTextRect('进入');
+        arr = againArr.filter(item => item.text === '进入');
+        if(arr.length >= 2){
+          break;
+        }
+      }
+    }
     clickRect(arr[i],{})
     sleep(5000)
-    for(let i = 0;i<10;i++){
+    for(var z = 0;z<10;z++){
+      clickImageTemplate('commonBtn.jpg',{region:'rightBottomHalf'});
+
       const res = findTextAndClick('跳过',{isRepeat:true})
       sleep(5000)
       const res2 = findTextAndClick('侠士',{region:'rightHalf'})
       if(!res2){
         specialFuBen()
       }else{
-        sleep(5000)
+        sleep(6000)
       }
       clickImageTemplate('commonBtn.jpg',{region:'rightBottomHalf'});
       sleep(1500);
-      isFuBengFight()
+      isFuBengFight();
+
+      if(hasText('点击') || hasText('继续')){
+        randomClick()
+        sleep(1000)
+      }
       // 如何检测到了长安城 则跳出 
       if(isOver()){
         break;
