@@ -22,7 +22,7 @@ export default {
         {
           route: 'fiveBen',
           class: 'bg-mauve',
-          title: '自动3本',
+          title: '自动3、5本',
           icon: 'van-icon-chat-o'
         },
         {
@@ -59,6 +59,12 @@ export default {
           route: 'qiang',
           class: 'bg-cyan',
           title: '抢铅',
+          icon: 'van-icon-chat-o'
+        },
+        {
+          route: 'xingGuang',
+          class: 'bg-blue',
+          title: '星官、地煞倒计时',
           icon: 'van-icon-chat-o'
         }
       ],

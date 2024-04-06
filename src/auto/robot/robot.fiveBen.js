@@ -14,6 +14,16 @@ function isFight(){
     log('还在战斗中...')
   }
 }
+// 循环执行一事件 减少判断时间
+function loopFunction(fun,interTime){
+  for(var i = 0;i<interTime;i++){
+    sleep(1000)
+    var res = fun();
+    if(res){
+      break;
+    }
+  }
+}
 
 // 在副本战斗中，在点击进入战斗的时候 可能会出现对话  需要快速跳过
 function isFuBengFight(){
@@ -69,7 +79,7 @@ function specialFuBen(){
       sleep(3000)
       clickImageTemplate('commonBtn.jpg',{region:'rightBottomHalf',isRepeat:true});
     }
-  }else if(hasText('')){
+  }else if(hasText('任务') || hasText('隐')){
     findTextAndClick('隐藏任务')
     sleep(5000)
     if(isHasImageTemplate('commonBtn.jpg')){
@@ -97,21 +107,21 @@ function taoHaiQu(){
       log('未检测到长安城')
     }
     isFightingCallback(function(){
+      // 有可能跳转到进入战斗时间问题 按钮会延迟出现
+      clickImageTemplate('commonBtn.jpg',{region:'rightBottomHalf'});
       if(isOver()){
         log('检测到长安城了3')
         return true
       }else{
         log('未检测到长安城3')
       }
-      let res = findTextAndClick('动画',{isRepeat:true,region:'rightHalf'})
-      // 如果没有跳过字眼 则等等下一个普通
-      if(!res){
-        sleep(3000)
-      }else{
-        sleep(5000)
-      }
-      const res2 = findTextAndClick('普通',{region:'rightHalf'});
-      sleep(5000)
+      loopFunction(function(){
+        findTextAndClick('动画',{isRepeat:true,region:'rightHalf'},5)
+      })
+      loopFunction(function(){
+        findTextAndClick('普通',{region:'rightHalf'},5);
+      })
+      
       if(!res2){
         specialFuBen()
       }else{
@@ -127,6 +137,7 @@ function taoHaiQu(){
       }
       sleep(1000)
       isFuBengFight()
+      findTextAndClick('普通',{region:'rightHalf'});
     })
     // 如何检测到了长安城 则跳出 
     if(isOver()){
@@ -172,8 +183,11 @@ function normalEnterToSelect(){
 }
 
 // 普通副本
-function normalFuBen(){
-  for(var i = 0;i<3;i++){
+function normalFuBen(num){
+  if(num === 0){
+    return
+  }
+  for(var i = num;i>0;i--){
     log('执行第'+ (i+1) +'个副本任务！')
     clickClosePoint()
     sleep(1500)
@@ -190,16 +204,19 @@ function normalFuBen(){
       }
       
     }
-    clickImagePoint(arr[i])
+    clickImagePoint(arr[i - 1])
     sleep(3000)
     taoHaiQu()
   }
 }
 
 // 侠士副本
-function xiaShiFuBen(){
+function xiaShiFuBen(num){
+  if(num === 0){
+    return
+  }
   log('执行侠士副本')
-  for(let i =0;i<2;i++){
+  for(let i =num;i>0;i--){
     clickClosePoint();
     findTextAndClick('侠士',{region:'rightHalf'})
     sleep(4000)
@@ -219,12 +236,13 @@ function xiaShiFuBen(){
         }
       }
     }
-    clickRect(arr[i],{})
+    clickRect(arr[i - 1],{})
     sleep(5000)
     for(var z = 0;z<10;z++){
       clickImageTemplate('commonBtn.jpg',{region:'rightBottomHalf'});
 
       const res = findTextAndClick('跳过',{isRepeat:true})
+      
       sleep(5000)
       const res2 = findTextAndClick('侠士',{region:'rightHalf'})
       if(!res2){
@@ -252,15 +270,26 @@ function xiaShiFuBen(){
 sleep(2000)
 
 
-if(params.check.length === 2){
-  xiaShiFuBen()
-  sleep(2000)
-  normalFuBen()
-}else{
-  if(params.check.includes('3')){
-    normalFuBen()
-  }else{
-    xiaShiFuBen()
+var typeObj = {
+  normal2:{
+    normalNum:2,
+    xiaShi:0
+  },
+  normal3:{
+    normalNum:2,
+    xiaShi:1,
+  },
+  highNormal3:{
+    normalNum:3,
+    xiaShi:0
+  },
+  highNormal5:{
+    normalNum:3,
+    xiaShi:2
   }
 }
+xiaShiFuBen(typeObj[params.check].xiaShi)
+sleep(2000);
+normalFuBen(typeObj[params.check].normalNum)
+
 

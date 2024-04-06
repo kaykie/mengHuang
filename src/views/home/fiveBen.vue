@@ -6,12 +6,14 @@
     <p>3、提前组好队伍并置于长安城</p>
     <img src="@/assets/img/autoThree.jpg"/>
     <p>4、点击悬浮窗口【开始】按钮即可</p>
-    <van-checkbox-group v-model="groupChecked" @change="onChangeType" direction="horizontal">
-      <van-checkbox name="3" shape="square">普通3本</van-checkbox>
-      <van-checkbox name="2" shape="square">侠士2本</van-checkbox>
-    </van-checkbox-group>
+    <van-radio-group v-model="groupChecked" direction="horizontal">
+      <van-radio name="normal2">69级普通2本</van-radio>
+      <van-radio name="normal3">69级3本(2普通+1侠士)</van-radio>
+      <van-radio name="highNormal3">89级普通3本</van-radio>
+      <van-radio name="highNormal5">89级5本(3普通+2侠士.)</van-radio>
+    </van-radio-group>
     <van-button :disabled="groupChecked.length==0" round block @click="startNow" type="primary" native-type="submit">
-      开始执行{{ text }}
+      开始执行
     </van-button>
     <p>注：上一个版本只战斗3次的问题已修复，目前只要打不过会重复执行</p>
   </div>
@@ -22,8 +24,7 @@ export default {
     return {
       model: {
       },
-      groupChecked:['3','2'],
-      text:'5本'
+      groupChecked:['highNormal5'],
     }
   },
   mounted () { },
@@ -32,18 +33,6 @@ export default {
     localStorage.VUE_DOUYIN = JSON.stringify(this.model)
   },
   methods: {
-    onChangeType(val){
-      console.log(val)
-      if(val.length === 2){
-        this.text = '5本'
-        return
-      }
-      if(val.includes('3')){
-        this.text = '3本'
-      }else{
-        this.text = '2本'
-      }
-    },
     startNow () {
       console.log(this.groupChecked)
       auto.invoke(
@@ -62,8 +51,11 @@ export default {
 </script>
 <style lang="less" scoped>
 .container{
-  :deep(.van-checkbox-group){
+  :deep(.van-radio-group){
     margin: 10px;
+    .van-radio{
+      margin-bottom: 10px;
+    }
   }
 }
 </style>

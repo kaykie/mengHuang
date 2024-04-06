@@ -11,6 +11,16 @@ log(ratioX,ratioY)
 
 var params = global.WEB_PARAMS.params
 
+// 循环执行一事件 减少判断时间
+function loopFunction(fun,interTime){
+  for(var i = 0;i<interTime;i++){
+    sleep(1000)
+    var res = fun();
+    if(res){
+      break;
+    }
+  }
+}
 sleep(1000);
 
 for(var i = 0;i< 100;i++){
@@ -52,13 +62,16 @@ for(var i = 0;i< 100;i++){
     log('还在捉鬼中...')
     sleep(20 * 1000)
   }
-  findTextAndClick('确定');
-  sleep(2000)
-  sleep(8000)
-  clickImageTemplate('zgrw.png',{region:'rightHalf'});
   
-  sleep(10000)
+  loopFunction(function(){
+    findTextAndClick('确定');
+  },8)
+
+  loopFunction(function(){
+    clickImageTemplate('zgrw.png',{region:'rightHalf'});
+  },8)
   randomClick()
+  sleep(1000)
   clickClosePoint()
 }
 

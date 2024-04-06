@@ -52,6 +52,11 @@ const routes = [
     name: 'qiang',
     component: () => import('./views/home/qiang.vue'),
   },
+  {
+    path: '/xingGuang',
+    name: 'xingGuang',
+    component: () => import('./views/home/xingGuang.vue'),
+  },
 ]
 const router = createRouter({
   history: createWebHashHistory(),
