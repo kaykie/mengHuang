@@ -9,9 +9,13 @@
     <p>
       步骤二：当游戏中提示星官、地煞时，点击开始按钮
     </p>
+    
     <van-button round block @click="startNow" type="primary" native-type="submit">
       开始执行
     </van-button>
+    <p>
+      提示：点击倒计时，则停止计时
+    </p>
   </div>
 </template>
 <script>

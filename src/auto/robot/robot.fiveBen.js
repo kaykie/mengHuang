@@ -1,6 +1,6 @@
 auto();
 
-const {findTextAndClick,isFightingCallback,clickClosePoint,isFighting,clickImagePoint,findImageTemplatePoints,isHasImageTemplate,clickRect,randomClick,clickImageTemplate,hasText,findTextRect} = require('util.js')
+const {findTextAndClick,loopFunction,isFightingCallback,clickClosePoint,isFighting,clickImagePoint,findImageTemplatePoints,isHasImageTemplate,clickRect,randomClick,clickImageTemplate,hasText,findTextRect} = require('util.js')
 
 toastLog('即将开始自动三本啦!!')
 sleep(2000)
@@ -14,16 +14,7 @@ function isFight(){
     log('还在战斗中...')
   }
 }
-// 循环执行一事件 减少判断时间
-function loopFunction(fun,interTime){
-  for(var i = 0;i<interTime;i++){
-    sleep(1000)
-    var res = fun();
-    if(res){
-      break;
-    }
-  }
-}
+
 
 // 在副本战斗中，在点击进入战斗的时候 可能会出现对话  需要快速跳过
 function isFuBengFight(){
@@ -116,16 +107,18 @@ function taoHaiQu(){
         log('未检测到长安城3')
       }
       loopFunction(function(){
-        findTextAndClick('动画',{isRepeat:true,region:'rightHalf'},5)
-      })
-      loopFunction(function(){
-        findTextAndClick('普通',{region:'rightHalf'},5);
-      })
+        return findTextAndClick('动画',{isRepeat:true,region:'rightHalf'})
+      },5)
+      var res2 = loopFunction(function(){
+        return findTextAndClick('普通',{region:'rightHalf'});
+      },5)
       
       if(!res2){
         specialFuBen()
       }else{
-        let res3 = clickImageTemplate('commonBtn.jpg',{region:'rightBottomHalf'});
+        var res3 = loopFunction(function(){
+          return clickImageTemplate('commonBtn.jpg',{region:'rightBottomHalf'});
+        },5)
         if(!res3){
           // 如果此时还没有 就是文案太长了 需要自定义文案调整 此处是流沙净 普通处 文案太长了
           if(hasText('流沙')){
@@ -175,7 +168,15 @@ function normalEnterToSelect(){
     }
   }
   sleep(7000)
-  clickImageTemplate('xuanZheFuBen.jpg',{isRepeat:true})
+  var res3 = clickImageTemplate('xuanZheFuBen.jpg',{isRepeat:true,region:'rightHalf'})
+  if(!res3){
+    log('走选择副本文字')
+    var res4 = findTextAndClick('选择副本',{region:'rightHalf'})
+    if(!res4){
+      log('走选择 文字')
+      findTextAndClick('选择',{region:'rightHalf'})
+    }
+  }
   sleep(2000)
   var arr = findImageTemplatePoints('jingRu.jpg');
   log(arr,'arr');
@@ -198,7 +199,7 @@ function normalFuBen(num){
         randomClick();
         sleep(1500);
         arr = normalEnterToSelect()
-        if(arr.length >=3){
+        if(arr.length >= 2){
           break;
         }
       }

@@ -125,7 +125,7 @@ function clickImageTemplate(name,options){
   var imgWidth = temp.getWidth(),imgHeight = temp.getHeight();
   var hRatio = device.height / 2400;
   var wRatio = device.width / 1080;
-  var smallTemp = images.scale(temp,hRatio,wRatio)
+  var smallTemp = images.scale(temp,wRatio,hRatio)
   let p = findImage(img,smallTemp,{
     region:region
   });
@@ -171,7 +171,7 @@ function isHasImageTemplate(name,options){
   var temp = images.read(`./images/${name}`);
   var hRatio = device.height / 2400;
   var wRatio = device.width / 1080;
-  var smallTemp = images.scale(temp,hRatio,wRatio)
+  var smallTemp = images.scale(temp,wRatio,hRatio)
   let p = findImage(img,smallTemp,{
     region:region
   });
@@ -194,7 +194,7 @@ function findImageTemplatePoint(name,options){
   var wRatio = device.width / 1080;
   log(hRatio,wRatio)
   
-  var smallTemp = images.scale(temp,hRatio,wRatio)
+  var smallTemp = images.scale(temp,wRatio,hRatio)
   let p = findImage(img,smallTemp,{
     region:region,
     threshold:threshold
@@ -219,7 +219,7 @@ function findImageTemplatePoints(name,options){
   var imgWidth = temp.getWidth(),imgHeight = temp.getHeight();
   var hRatio = device.height / 2400;
   var wRatio = device.width / 1080;
-  var smallTemp = images.scale(temp,hRatio,wRatio)
+  var smallTemp = images.scale(temp,wRatio,hRatio)
   let points = images.matchTemplate(img,smallTemp,{
     region:region,
     threshold:threshold,
@@ -392,7 +392,19 @@ function clickClosePoint(){
   }
 }
 
-
+// 循环执行一事件 减少判断时间
+function loopFunction(fun,interTime){
+  var bool = false
+  for(var i = 0;i<interTime;i++){
+    sleep(1000)
+    var res = fun();
+    if(res){
+      bool = true
+      break;
+    }
+  }
+  return bool
+}
 
 module.exports = {
   clickRect,
@@ -409,5 +421,6 @@ module.exports = {
   isFighting,
   findImageTemplatePoints,
   clickClosePoint,
-  isFightingCallback
+  isFightingCallback,
+  loopFunction
 }

@@ -64,11 +64,11 @@ for(var i = 0;i< 100;i++){
   }
   
   loopFunction(function(){
-    findTextAndClick('确定');
+    return findTextAndClick('确定');
   },8)
 
   loopFunction(function(){
-    clickImageTemplate('zgrw.png',{region:'rightHalf'});
+    return clickImageTemplate('zgrw.png',{region:'rightHalf'});
   },8)
   randomClick()
   sleep(1000)

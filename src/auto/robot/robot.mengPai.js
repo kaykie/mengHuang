@@ -1,7 +1,7 @@
 // 周一门派活动
 auto();
 
-const {findTextAndClick,isFighting,isFightingCallback,randomClick,clickImageTemplate,hasText,findTextRect} = require('util.js')
+const {findTextAndClick,loopFunction,isFighting,isFightingCallback,randomClick,clickImageTemplate,hasText,findTextRect} = require('util.js')
 
 
 
@@ -17,7 +17,7 @@ function isFight(){
 }
 
 while(true){
-  if(hasText('闯关-')){
+  if(hasText('闯关-') || hasText('领取任务')){
     log('去领取任务了')
     sleep(1000);
     var res = findTextAndClick('闯关-',{region:'rightHalf'});
@@ -26,19 +26,23 @@ while(true){
       findTextAndClick('领取任务',{region:'rightHalf'});
     }
     sleep(4000)
-    clickImageTemplate('mengPaiChuangGuan.jpg',{region:'rightBottomHalf'});
-    sleep(2000)
-    clickImageTemplate('lingQuRenWu.jpg',{region:'rightBottomHalf'});
-    sleep(2500)
+    loopFunction(function(){
+      return clickImageTemplate('mengPaiChuangGuan.jpg',{region:'rightBottomHalf'});
+    },2)
+    loopFunction(function(){
+      return clickImageTemplate('lingQuRenWu.jpg',{region:'rightBottomHalf'});
+    },3)
   }
   randomClick()
   isFightingCallback(function(){
     log('回调内容')
     sleep(1000)
-    findTextAndClick('闯关(')
-    sleep(5000)
-    clickImageTemplate('commonBtn.jpg',{region:'rightBottomHalf',isRepeat:true})
-    sleep(1000)
+    loopFunction(function(){
+      return findTextAndClick('闯关(')
+    },6)
+    loopFunction(function(){
+      return clickImageTemplate('commonBtn.jpg',{region:'rightBottomHalf',isRepeat:true})
+    },2)
   })
   log('回调内容2')
   isFight()

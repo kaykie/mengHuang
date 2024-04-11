@@ -15,7 +15,7 @@
     <van-button :disabled="groupChecked.length==0" round block @click="startNow" type="primary" native-type="submit">
       开始执行
     </van-button>
-    <p>注：上一个版本只战斗3次的问题已修复，目前只要打不过会重复执行</p>
+    <p>注：上一个版本只战斗3次的问题已修复，目前只要打不过会重复执行.</p>
   </div>
 </template>
 <script>

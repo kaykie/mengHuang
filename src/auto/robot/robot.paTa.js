@@ -1,7 +1,7 @@
 // 周三召唤灵活动
 auto();
 
-const {findTextAndClick,isHasImageTemplate,clickClosePoint,randomClick,clickImageTemplate,hasText,findTextRect} = require('util.js')
+const {findTextAndClick,loopFunction,isHasImageTemplate,clickClosePoint,randomClick,clickImageTemplate,hasText,findTextRect} = require('util.js')
 
 function isFight(){
   while(true){
@@ -18,15 +18,20 @@ while(true){
   randomClick()
   clickClosePoint()
   sleep(500)
-  let res = findTextAndClick('周常',{region:'rightTopHalf'})
+  var res = loopFunction(function(){
+    return findTextAndClick('周常',{region:'rightTopHalf'})
+  },8)
   if(!res){
-    let res3 = findTextAndClick('迷魂',{region:'rightTopHalf'})
+    var res3 = loopFunction(function(){
+      return findTextAndClick('迷魂',{region:'rightTopHalf'})
+    },8)
     if(!res3){
       unFindTime++
     }
   }
-  sleep(7000)
-  let res2 = clickImageTemplate('commonBtn.jpg',{region:'rightBottomHalf',isRepeat:true})
+  var res2 = loopFunction(function(){
+    return clickImageTemplate('commonBtn.jpg',{region:'rightBottomHalf',isRepeat:true})
+  },8)
   if(res2){
     let res3 = hasText('移动')
     if(res3){
