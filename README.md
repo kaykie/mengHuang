@@ -16,8 +16,8 @@
 > 2. 脚本是基于图片识别与文字识别的，所以一旦在执行的过程中操作会导致脚本执行出错
 
 ## 运行到手机上
-> 1. 下载release版本：[v0.1.0](https://github.com/kaykie/mengHuang/releases/tag/0.1.0)（还在迭代中）
-> 1. 国内码云下载：[v0.1.0](https://gitee.com/kaykie/menghuang/releases/tag/0.1.0)（还在迭代中）
+> 1. 下载release版本：[v0.2.0](https://github.com/kaykie/mengHuang/releases/tag/0.2.0)（还在迭代中）
+> 1. 国内码云下载：[v0.2.0](https://gitee.com/kaykie/menghuang/releases/tag/0.2.0)（还在迭代中）
 > 2. 安装到安卓手机上
 > 3. 打开app
 > 4. 给app授予无障碍权限与悬浮窗权限

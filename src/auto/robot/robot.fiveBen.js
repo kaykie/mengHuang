@@ -106,9 +106,14 @@ function taoHaiQu(){
       }else{
         log('未检测到长安城3')
       }
-      loopFunction(function(){
+      var res = loopFunction(function(){
         return findTextAndClick('动画',{isRepeat:true,region:'rightHalf'})
       },5)
+      if(!res){
+        loopFunction(function(){
+          return findTextAndClick('跳过',{isRepeat:true,region:'rightHalf'})
+        },5)
+      }
       var res2 = loopFunction(function(){
         return findTextAndClick('普通',{region:'rightHalf'});
       },5)
