@@ -18,7 +18,7 @@ function isFight(){
 
 // 在副本战斗中，在点击进入战斗的时候 可能会出现对话  需要快速跳过
 function isFuBengFight(){
-  if(isHasImageTemplate('fuBengFight.jpg')){
+  if(isHasImageTemplate('fuBengFight.jpg') || hasText('点击任意') || hasText('任意地方') || hasText('地方继续')){
     // 因为副本在进入在战斗的时候 可能会出现对话
     for(var i = 0; i<8;i++){
       randomClick()

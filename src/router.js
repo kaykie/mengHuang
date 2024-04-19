@@ -48,6 +48,11 @@ const routes = [
     component: () => import('./views/home/paTa.vue'),
   },
   {
+    path: '/waTu',
+    name: 'waTu',
+    component: () => import('./views/home/waTu.vue'),
+  },
+  {
     path: '/qiang',
     name: 'qiang',
     component: () => import('./views/home/qiang.vue'),

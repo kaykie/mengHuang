@@ -385,6 +385,10 @@ function clickClosePoint(){
       log('有一个x号，点击关闭,这个x号是擂台提示的');
       sleep(1500)
       clickImageTemplate('xhao2.jpg',{region:'rightHalf'})
+    }else if(isHasImageTemplate('xhao3.jpg'){
+      log('有一个x号，点击关闭,这个x号是擂台提示的');
+      sleep(1500)
+      clickImageTemplate('xhao3.jpg')
     }else{
       break;
     }

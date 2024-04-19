@@ -1,6 +1,5 @@
 <template>
 <div class="home">
-  
   <div class="list">
     <div :class="'item ' + item.class" v-for="item in list" @click="goPage(item)">
       {{ item.title }}
@@ -10,13 +9,15 @@
     <van-button class="item" type="primary" block @click="handleTest">测试按钮</van-button>
   </div>
 </div>
-  
 </template>
 <script>
 import store from '@/store';
+import {Dialog} from 'vant'
 export default {
   data () {
     return {
+      version:'0.2.0',
+      isShowDialog:false,
       store,
       list: [
         {
@@ -62,6 +63,12 @@ export default {
           icon: 'van-icon-chat-o'
         },
         {
+          route: 'waTu',
+          class: 'bg-pink',
+          title: '挖普通图',
+          icon: 'van-icon-chat-o'
+        },
+        {
           route: 'xingGuang',
           class: 'bg-blue',
           title: '星官、地煞倒计时',
@@ -71,7 +78,22 @@ export default {
       isDev:true
     }
   },
+  components:{
+    Dialog
+  },
   mounted () { 
+    const versionInfo = JSON.parse(localStorage.getItem('versionInfo') || '{}');
+    if(versionInfo.version !== this.version){
+      this.isShowDialog = true
+      Dialog.alert({
+        title: `${this.version}功能`,
+        message: '1. 更新挖图功能 \n2.五本战斗时，添加【点击任意地方继续】判断',
+        theme: 'round-button',
+      }).then(() => {
+        // on close
+        localStorage.setItem('versionInfo',JSON.stringify({version:this.version}))
+      });
+    }
     this.isDev = process.env.NODE_ENV === 'development'
   },
   methods: {
@@ -107,7 +129,11 @@ export default {
   .img{
     width: 200px;
   }
+
 }
+  .van-dialog__message{
+    text-align: left;
+  }
   .list{
     display:flex;
     flex-wrap:wrap;

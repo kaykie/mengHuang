@@ -6,6 +6,8 @@ import './flexable'
 import router from './router'
 import './store'
 import vant from 'vant'
+import 'vant/es/dialog/style';
+
 // 初始化autojs 全局函数
 auto.execAjCode(require('@/auto/global/robot.global'))
 auto.execAjCode(require('@/auto/global/robot.menu'))
