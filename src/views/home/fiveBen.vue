@@ -12,6 +12,10 @@
       <van-radio name="highNormal3">89级普通3本</van-radio>
       <van-radio name="highNormal5">89级5本(3普通+2侠士.)</van-radio>
     </van-radio-group>
+
+    <div class="select-ghost">
+      <van-checkbox v-model="isInfiniteGhost">执行完副本后是否无限抓鬼</van-checkbox>
+    </div>
     <van-button :disabled="groupChecked.length==0" round block @click="startNow" type="primary" native-type="submit">
       开始执行
     </van-button>
@@ -22,9 +26,9 @@
 export default {
   data () {
     return {
-      model: {
-      },
-      groupChecked:['highNormal5'],
+      model: {},
+      groupChecked:'highNormal5',
+      isInfiniteGhost:false
     }
   },
   mounted () { },
@@ -37,7 +41,7 @@ export default {
       console.log(this.groupChecked)
       auto.invoke(
         'runRobot',
-        [{ robot: require('@/auto/robot/robot.fiveBen'), params:{check:this.groupChecked} }],
+        [{ robot: require('@/auto/robot/robot.fiveBen'), params:{check:this.groupChecked,isInfiniteGhost:this.isInfiniteGhost} }],
         () => {
           // log('ajFun1 回调:', typeof r, r)
         },
@@ -56,6 +60,9 @@ export default {
     .van-radio{
       margin-bottom: 10px;
     }
+  }
+  .select-ghost{
+    padding: 0 10px 20px;
   }
 }
 </style>

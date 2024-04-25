@@ -16,7 +16,7 @@ import {Dialog} from 'vant'
 export default {
   data () {
     return {
-      version:'0.2.0',
+      version:'0.3.0',
       isShowDialog:false,
       store,
       list: [
@@ -87,7 +87,7 @@ export default {
       this.isShowDialog = true
       Dialog.alert({
         title: `${this.version}功能`,
-        message: '1. 更新挖图功能 \n2.五本战斗时，添加【点击任意地方继续】判断',
+        message: '1. 更新副本后自动抓鬼功能 \n2.更新门派闯关说明文字 \n3.优化副本功能\n4.优化门派进入战斗功能\n\n 此次更新需要更新安装包，否则无法进入副本后抓鬼程序(之前功能不会受影响)，安装包版本:0.3.0.\n下载地址：https://gitee.com/kaykie/menghuang/releases/tag/0.3.0',
         theme: 'round-button',
       }).then(() => {
         // on close

@@ -136,6 +136,8 @@ function taoHaiQu(){
       sleep(1000)
       isFuBengFight()
       findTextAndClick('普通',{region:'rightHalf'});
+      // 待添加两小角图片 不然会一直都在 万恶的看剧情 
+      clickImageTemplate('tiaoguo.jpg',{region:'rightTopHalf'})
     })
     // 如何检测到了长安城 则跳出 
     if(isOver()){
@@ -253,9 +255,8 @@ function xiaShiFuBen(num){
       const res2 = findTextAndClick('侠士',{region:'rightHalf'})
       if(!res2){
         specialFuBen()
-      }else{
-        sleep(6000)
       }
+      sleep(8000)
       clickImageTemplate('commonBtn.jpg',{region:'rightBottomHalf'});
       sleep(1500);
       isFuBengFight();
@@ -297,5 +298,89 @@ var typeObj = {
 xiaShiFuBen(typeObj[params.check].xiaShi)
 sleep(2000);
 normalFuBen(typeObj[params.check].normalNum)
+sleep(2000)
+log('副本结束')
+
+// 开始执行抓鬼逻辑
+if(params.isInfiniteGhost){
+  clickImageTemplate('changAnCheng.png',{region:'leftTopHalf'})
+  sleep(1500)
+  var res = clickImageTemplate('zhongkui.jpg',{region:'leftHalf'})
+  if(!res){
+    var res2 = clickImageTemplate('zhongkui_kui.jpg',{region:'leftHalf'});
+    if(!res2){
+      var res3 = clickImageTemplate('zhongkui_zhong.jpg',{region:'leftHalf'})
+      if(!res3){
+        clickImageTemplate('ytg.jpg')
+        sleep(8000)
+        clickImageTemplate('zhongkui.jpg',{region:'leftHalf'})
+      }
+    }
+  }
+  sleep(8000)
+  loopFunction(function(){
+    return clickImageTemplate('zgrw.png',{region:'rightHalf'});
+  },8)
+  sleep(1000)
+  randomClick()
+  sleep(1000)
+  clickClosePoint()
+  sleep(1500)
+  findTextAndClick('取消')
+}
 
 
+
+
+// 以下直接从five.js中带来
+for(var i = 0;i< 100;i++){
+  if(isFighting()){
+    log('战斗中...')
+  }else{
+    toastLog(`开始第${i+1}轮鬼`)
+    findTextAndClick('日常-',{region:'rightHalf'})
+    // TODO
+    if(!hasText('日常-')){
+      sleep(2000)
+      clickImageTemplate('renwu.jpg',{region:'rightHalf'})
+      sleep(2000)
+      findTextAndClick('日常-',{region:'rightHalf'})
+    }
+    sleep(10000)
+    // 如果10秒后还没有在战斗中 说明没有点击到任务
+    if(!isFighting()){
+      findTextAndClick('捉拿',{region:'rightHalf'})
+    }
+  }
+  sleep(8000)
+  if(!isFighting()){
+    sleep(2000);
+    toastLog(`再次来了，开始第${i+1}轮鬼`)
+    findTextAndClick('日常-',{region:'rightHalf'})
+    sleep(10000)
+    // 如果10秒后还没有在战斗中 说明没有点击到任务
+    if(!isFighting()){
+      findTextAndClick('捉拿',{region:'rightHalf'})
+    }
+  }
+
+  while(true){
+    if(hasText('少侠已经')){
+      break;
+    }
+    clickClosePoint()
+    log('还在捉鬼中...')
+    sleep(20 * 1000)
+  }
+  
+  loopFunction(function(){
+    return findTextAndClick('确定');
+  },8)
+
+  loopFunction(function(){
+    return clickImageTemplate('zgrw.png',{region:'rightHalf'});
+  },8)
+  randomClick()
+  sleep(1000)
+  clickClosePoint()
+}

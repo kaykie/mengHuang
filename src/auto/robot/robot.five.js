@@ -3,25 +3,13 @@ var h = device.height;
 var w = device.width;
 // setScreenMetrics(w,h);
 
-const {findTextAndClick,clickClosePoint,isFighting,randomClick,clickImageTemplate,isHasImageTemplate,hasText} = require('util.js')
+const {findTextAndClick,loopFunction,clickClosePoint,isFighting,randomClick,clickImageTemplate,isHasImageTemplate,hasText} = require('util.js')
 const ratioX = device.width/1800
 const ratioY = device.height/2400
 log(ratioX,ratioY)
 
 
 var params = global.WEB_PARAMS.params
-
-// 循环执行一事件 减少判断时间
-function loopFunction(fun,interTime){
-  for(var i = 0;i<interTime;i++){
-    sleep(1000)
-    var res = fun();
-    if(res){
-      break;
-    }
-  }
-}
-sleep(1000);
 
 for(var i = 0;i< 100;i++){
   if(isFighting()){
@@ -74,5 +62,3 @@ for(var i = 0;i< 100;i++){
   sleep(1000)
   clickClosePoint()
 }
-
-exit()

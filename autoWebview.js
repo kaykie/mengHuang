@@ -1,11 +1,11 @@
 /* eslint-disable */
 'ui';
 // 一. 开发使用本地地址调试
-initUi('http://192.168.170.108:5666/')
+// initUi('http://192.168.144.108:5666/')
 // initUi('http://172.21.32.205:5666/')
 
 // 二.上线
-// initUi(`https://www.xiaye0.com/mh?timestamp=${new Date().getTime()}`)
+initUi(`https://www.xiaye0.com/mh?timestamp=${new Date().getTime()}`)
 
 /**
  * 初始化 UI

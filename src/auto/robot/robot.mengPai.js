@@ -42,7 +42,7 @@ while(true){
     },6)
     loopFunction(function(){
       return clickImageTemplate('commonBtn.jpg',{region:'rightBottomHalf',isRepeat:true})
-    },2)
+    },6)
   })
   log('回调内容2')
   isFight()
