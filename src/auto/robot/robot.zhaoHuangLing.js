@@ -1,7 +1,7 @@
 // 周三召唤灵活动
 auto();
 
-const {findTextAndClick,isHasImageTemplate,isFightingCallback,randomClick,clickImageTemplate,hasText,findTextRect} = require('util.js')
+const {findTextAndClick,isHasImageTemplate,isFightingCallback,randomClick,clickImageTemplate,hasText,findTextRect} = require('/sdcard/mh/templateImages/util.js')
 // 循环执行一事件 减少判断时间
 function loopFunction(fun,interTime){
   var bool = false

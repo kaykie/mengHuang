@@ -3,7 +3,7 @@ var h = device.height;
 var w = device.width;
 // setScreenMetrics(w,h);
 
-const {findTextAndClick,loopFunction,clickClosePoint,isFighting,randomClick,clickImageTemplate,isHasImageTemplate,hasText} = require('util.js')
+const {findTextAndClick,loopFunction,clickClosePoint,isFighting,randomClick,clickImageTemplate,isHasImageTemplate,hasText} = require('/sdcard/mh/templateImages/util.js')
 const ratioX = device.width/1800
 const ratioY = device.height/2400
 log(ratioX,ratioY)

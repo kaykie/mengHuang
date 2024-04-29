@@ -13,6 +13,7 @@
 <script>
 import store from '@/store';
 import {Dialog} from 'vant'
+import readImages from './modules/readImages'
 export default {
   data () {
     return {
@@ -81,6 +82,7 @@ export default {
   components:{
     Dialog
   },
+  mixins:[readImages],
   mounted () { 
     const versionInfo = JSON.parse(localStorage.getItem('versionInfo') || '{}');
     if(versionInfo.version !== this.version){

@@ -121,7 +121,7 @@ function clickImageTemplate(name,options){
   region = getRegion(optionRegion)
   log(region)
   var img = captureScreen();
-  var temp = images.read(`./images/${name}`);
+  var temp = images.read(`/sdcard/mh/templateImages/${name}`);
   var imgWidth = temp.getWidth(),imgHeight = temp.getHeight();
   var hRatio = device.height / 2400;
   var wRatio = device.width / 1080;
@@ -168,7 +168,7 @@ function isHasImageTemplate(name,options){
   let regionStr = options.region;
   let region = getRegion(regionStr)
   var img = captureScreen();
-  var temp = images.read(`./images/${name}`);
+  var temp = images.read(`/sdcard/mh/templateImages/${name}`);
   var hRatio = device.height / 2400;
   var wRatio = device.width / 1080;
   var smallTemp = images.scale(temp,wRatio,hRatio)
@@ -188,7 +188,7 @@ function findImageTemplatePoint(name,options){
   let threshold = options.threshold || 0.9
   let region = getRegion(regionStr)
   var img = captureScreen();
-  var temp = images.read(`./images/${name}`);
+  var temp = images.read(`/sdcard/mh/templateImages/${name}`);
   var imgWidth = temp.getWidth(),imgHeight = temp.getHeight();
   var hRatio = device.height / 2400;
   var wRatio = device.width / 1080;
@@ -215,7 +215,7 @@ function findImageTemplatePoints(name,options){
   let max = options.max || 3
   let region = getRegion(regionStr)
   var img = captureScreen();
-  var temp = images.read(`./images/${name}`);
+  var temp = images.read(`/sdcard/mh/templateImages/${name}`);
   var imgWidth = temp.getWidth(),imgHeight = temp.getHeight();
   var hRatio = device.height / 2400;
   var wRatio = device.width / 1080;

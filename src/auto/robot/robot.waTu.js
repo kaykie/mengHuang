@@ -1,7 +1,7 @@
 // 挖图脚本
 auto();
 
-const {findTextAndClick,loopFunction,isHasImageTemplate,isFighting,randomClick,clickImageTemplate,hasText,findTextRect} = require('util.js')
+const {findTextAndClick,loopFunction,isHasImageTemplate,isFighting,randomClick,clickImageTemplate,hasText,findTextRect} = require('/sdcard/mh/templateImages/util.js')
 toastLog('挖图脚本执行中...')
 
 while(true){

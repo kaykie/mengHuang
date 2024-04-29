@@ -1,5 +1,5 @@
 auto();
-const {findTextAndClick,gmlkitOcr,findImageTemplatePoint,randomClick,clickImageTemplate,findTextRect,hasText} = require('util.js')
+const {findTextAndClick,gmlkitOcr,findImageTemplatePoint,randomClick,clickImageTemplate,findTextRect,hasText} = require('/sdcard/mh/templateImages/util.js')
 
 // var h = device.height;
 // var w = device.width;

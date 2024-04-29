@@ -1,7 +1,7 @@
 // 周三召唤灵活动
 auto();
 
-const {findTextAndClick,loopFunction,isHasImageTemplate,clickClosePoint,randomClick,clickImageTemplate,hasText,findTextRect} = require('util.js')
+const {findTextAndClick,loopFunction,isHasImageTemplate,clickClosePoint,randomClick,clickImageTemplate,hasText,findTextRect} = require('/sdcard/mh/templateImages/util.js')
 
 function isFight(){
   while(true){

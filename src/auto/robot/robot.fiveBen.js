@@ -1,6 +1,6 @@
 auto();
 
-const {findTextAndClick,loopFunction,isFightingCallback,clickClosePoint,isFighting,clickImagePoint,findImageTemplatePoints,isHasImageTemplate,clickRect,randomClick,clickImageTemplate,hasText,findTextRect} = require('util.js')
+const {findTextAndClick,loopFunction,isFightingCallback,clickClosePoint,isFighting,clickImagePoint,findImageTemplatePoints,isHasImageTemplate,clickRect,randomClick,clickImageTemplate,hasText,findTextRect} = require('/sdcard/mh/templateImages/util.js')
 
 toastLog('即将开始自动三本啦!!')
 sleep(2000)

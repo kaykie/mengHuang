@@ -16,8 +16,10 @@
       "yarn.lock",
       "vue.config.js",
       "README.md",
+      "images",
       "tsconfig.json",
-      "postcss.config.js"
+      "postcss.config.js",
+      "util.js"
   ],
   "libs": [
     "libmlkit_google_ocr_pipeline.so",

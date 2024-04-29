@@ -1,6 +1,6 @@
 auto()
 
-const {findTextAndClick,clickRect,pressRect,clickImagePoint,findImageTemplatePoint,clickImageTemplate,findTextRect,hasText} = require('util.js')
+const {findTextAndClick,clickRect,pressRect,clickImagePoint,findImageTemplatePoint,clickImageTemplate,findTextRect,hasText} = require('/sdcard/mh/templateImages/util.js')
 
 let buyFirstPoint = {},
 buySecondPoint = {},
