@@ -43,7 +43,7 @@ for(var i = 0;i< 100;i++){
   }
 
   while(true){
-    if(hasText('少侠已经')){
+    if(hasText('少侠已经') || hasText('已经捉完') || hasText('1轮鬼')){
       break;
     }
     clickClosePoint()
