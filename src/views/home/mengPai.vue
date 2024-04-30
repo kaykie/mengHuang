@@ -5,7 +5,7 @@
       <p>2、启动梦幻西游手游app</p>
       <p>3、提前组好队伍并置于长安城</p>
       <p>4、先领取门派闯关任务</p>
-      <img src="@/assets/img/mengPaiChuangGuan.jpg"/>
+      <img style="width: 100%;" src="@/assets/img/mengPaiChuangGuan.jpg"/>
       <p>5、点击悬浮窗口【开始】按钮即可</p>
       <div style="margin: 16px;">
         <van-button round block @click="startNow" type="primary" native-type="submit">
@@ -13,8 +13,8 @@
         </van-button>
       </div>
       <h4>脚本执行流程：</h4>
-      <p>1、找到 【闯关-】文字</p>
-      <p>2、点击找到的 【闯关-】文字</p>
+      <p>1、找到 【闯关(】文字</p>
+      <p>2、点击找到的 【闯关(】文字</p>
   </div>
 </template>
 <script>

@@ -32,8 +32,10 @@ var params = global.WEB_PARAMS.params
 // 非普通 一些特殊情况执行
 function specialFuBen(){
   if(hasText('桃花')){
-    findTextAndClick('桃花')
-    sleep(6000)
+    
+    loopFunction(function(){
+      return findTextAndClick('桃花')
+    },8)
     if(isHasImageTemplate('commonBtn.jpg')){
       clickImageTemplate('commonBtn.jpg',{region:'rightBottomHalf',isRepeat:true});
     }else{
@@ -52,8 +54,9 @@ function specialFuBen(){
     }
   }else if(hasText('如梦')){
   // 绿烟如梦是没有普通字眼的
-    findTextAndClick('如梦')
-    sleep(6000)
+    loopFunction(function(){
+      return findTextAndClick('如梦')
+    },8)
     if(isHasImageTemplate('commonBtn.jpg')){
       clickImageTemplate('commonBtn.jpg',{region:'rightBottomHalf',isRepeat:true});
     }else{
@@ -71,8 +74,9 @@ function specialFuBen(){
       clickImageTemplate('commonBtn.jpg',{region:'rightBottomHalf',isRepeat:true});
     }
   }else if(hasText('任务') || hasText('隐')){
-    findTextAndClick('隐藏任务')
-    sleep(5000)
+    loopFunction(function(){
+      return findTextAndClick('隐藏任务')
+    },8)
     if(isHasImageTemplate('commonBtn.jpg')){
       clickImageTemplate('commonBtn.jpg',{region:'rightBottomHalf',isRepeat:true});
     }
@@ -116,7 +120,7 @@ function taoHaiQu(){
       }
       var res2 = loopFunction(function(){
         return findTextAndClick('普通',{region:'rightHalf'});
-      },5)
+      },8)
       
       if(!res2){
         specialFuBen()
