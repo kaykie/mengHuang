@@ -16,27 +16,27 @@ files.ensureDir(savePath)
 
 
 // 如果是第一次进来 并且 图片数量不一致 需要重新同步一下数据
-if(imgsData.length === 0 || imgsData.length !== imgs.length){
 
-  var prefixUrl = 'https://www.xiaye0.com/mh/templateImages/images/'
-  
-  for(var i = 0;i<imgs.length;i++){
-    var img = imgs[i];
-    if(imgsData.find(item => item === img)){
-      continue
-    }
-    var url = prefixUrl + img;
-    var loadImg = images.load(url);
-    if(loadImg){
-      images.save(loadImg,savePath + img)
-      imgsData.push(img)
-    }
+var prefixUrl = 'https://www.xiaye0.com/mh/templateImages/images/'
+
+for(var i = 0;i<imgs.length;i++){
+  var img = imgs[i];
+  if(files.exists(savePath + img)){
+    log('图片已存在')
+    continue
   }
-  var data = {
-    imgs: imgsData
+  log('开始下载图片',img)
+  var url = prefixUrl + img;
+  var loadImg = images.load(url);
+  if(loadImg){
+    images.save(loadImg,savePath + img)
+    imgsData.push(img)
   }
-  storage.put('imagesList', JSON.stringify(data));
 }
+var data = {
+  imgs: imgsData
+}
+storage.put('imagesList', JSON.stringify(data));
 
 
 
