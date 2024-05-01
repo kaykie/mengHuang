@@ -58,6 +58,7 @@ for(var i = 0;i< 100;i++){
   loopFunction(function(){
     return clickImageTemplate('zgrw.png',{region:'rightHalf'});
   },8)
+  sleep(1000)
   randomClick()
   sleep(1000)
   clickClosePoint()

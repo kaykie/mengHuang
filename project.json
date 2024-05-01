@@ -1,5 +1,5 @@
 {
-  "name": "梦幻西游脚本",
+  "name": "梦幻脚本",
   "main": "autoWebview.js",
   "ignore": [
       "dist",
@@ -27,6 +27,6 @@
     "libjackpal-termexec2.so"
   ],
   "packageName": "com.menghuanjiaoben",
-  "versionName": "0.0.7",
+  "versionName": "0.7.0",
   "versionCode": 1
 }

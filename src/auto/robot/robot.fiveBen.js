@@ -100,6 +100,7 @@ function taoHaiQu(){
     isFightingCallback(function(){
       // 有可能跳转到进入战斗时间问题 按钮会延迟出现
       clickImageTemplate('commonBtn.jpg',{region:'rightBottomHalf'});
+      sleep(3000)
       if(isOver()){
         log('检测到长安城了3')
         return true
@@ -136,7 +137,6 @@ function taoHaiQu(){
       sleep(1000)
       isFuBengFight()
       findTextAndClick('普通',{region:'rightHalf'});
-      // 待添加两小角图片 不然会一直都在 万恶的看剧情 
       clickImageTemplate('tiaoguo.jpg',{region:'rightTopHalf'})
     })
     // 如何检测到了长安城 则跳出 
@@ -228,18 +228,18 @@ function xiaShiFuBen(num){
     clickClosePoint();
     findTextAndClick('侠士',{region:'rightHalf'})
     sleep(4000)
-    const originArr = findTextRect('进入');
+    var originArr = findTextRect('进入');
     var arr = originArr.filter(item => item.text === '进入')
     log(arr,'找到的进入数组');
     // 如果此处没有找到进入的文案 则循环执行4次 直到找到进入的字眼
     if(arr.length === 0){
-      for(var j = 0;j<4;j++){
+      for(var j = 0;j<5;j++){
         randomClick()
-        sleep(1000)
+        sleep(2000)
         findTextAndClick('侠士',{region:'rightHalf'})
         var againArr = findTextRect('进入');
         arr = againArr.filter(item => item.text === '进入');
-        if(arr.length >= 2){
+        if(arr.length >= num){
           break;
         }
       }

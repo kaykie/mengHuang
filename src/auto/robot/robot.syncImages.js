@@ -40,7 +40,7 @@ storage.put('imagesList', JSON.stringify(data));
 
 
 
-
+// 重置工具类
 var url = "https://www.xiaye0.com/mh/templateImages/util.js";
 var res = http.get(url);
 if (res.statusCode != 200) {

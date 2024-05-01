@@ -44,7 +44,7 @@ export default{
       "zhongkui_kui.jpg",
       "zhongkui_zhong.jpg"
     ]
-
+    
     auto.invoke(
       'runRobotNow',
       [{ robot: require('@/auto/robot/robot.syncImages'), params:{imgs:array} }],

@@ -331,6 +331,7 @@ function randomClick(){
 
 // 判断当前是否存在文字
 function hasText(text,options){
+  sleep(500)
   if(!options) options = {}
   let region = options.region || ''
   var originImg = captureScreen();

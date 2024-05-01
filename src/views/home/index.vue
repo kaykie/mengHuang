@@ -17,7 +17,7 @@ import readImages from './modules/readImages'
 export default {
   data () {
     return {
-      version:'0.3.0',
+      version:'0.7.0',
       isShowDialog:false,
       store,
       list: [
@@ -89,7 +89,7 @@ export default {
       this.isShowDialog = true
       Dialog.alert({
         title: `${this.version}功能`,
-        message: '1. 更新副本后自动抓鬼功能 \n2.更新门派闯关说明文字 \n3.优化副本功能\n4.优化门派进入战斗功能\n\n 此次更新需要更新安装包，否则无法进入副本后抓鬼程序(之前功能不会受影响)，安装包版本:0.3.0.\n下载地址：https://gitee.com/kaykie/menghuang/releases/tag/0.3.0',
+        message: '1. 更新捉鬼任务结束找不到结束点 \n2.更新动态图片添加 \n3.更新动态工具类添加\n4.优化5本进入战斗速度\n\n 此次更新需要更新安装包，否则无法进入副本后抓鬼程序(之前功能不会受影响)，安装包版本:0.7.0.\n下载地址：https://gitee.com/kaykie/menghuang/releases/tag/0.7.0',
         theme: 'round-button',
       }).then(() => {
         // on close

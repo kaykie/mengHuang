@@ -1,6 +1,11 @@
 auto();
 const {findTextAndClick,gmlkitOcr,findImageTemplatePoint,randomClick,clickImageTemplate,findTextRect,hasText} = require('/sdcard/mh/templateImages/util.js')
 
+
+
+if(hasText('少侠已经') || hasText('已经捉完') || hasText('1轮鬼')){
+  log(111)
+}
 // var h = device.height;
 // var w = device.width;
 // setScreenMetrics(w,h);
@@ -15,20 +20,20 @@ const {findTextAndClick,gmlkitOcr,findImageTemplatePoint,randomClick,clickImageT
 
 // // let findArr = gmlkitOcr(img,{region:''})
 // // log(JSON.stringify(findArr))
-var temp = images.read(`./images/xuanZheFuBen.jpg`);
-// const point = images.matchTemplate(originImg,temp,{
-//     max:3
-// })
+// var temp = images.read(`./images/xuanZheFuBen.jpg`);
+// // const point = images.matchTemplate(originImg,temp,{
+// //     max:3
+// // })
 
-var originImg = images.read(`./images/sample5.jpg`);
-// var imgWidth = temp.getWidth(),imgHeight = temp.getHeight();
-var hRatio = 2460 / 2400;
-var wRatio = 1080 / 1080;
-var smallTemp = images.scale(temp,wRatio,hRatio)
+// var originImg = images.read(`./images/sample5.jpg`);
+// // var imgWidth = temp.getWidth(),imgHeight = temp.getHeight();
+// var hRatio = 2460 / 2400;
+// var wRatio = 1080 / 1080;
+// var smallTemp = images.scale(temp,wRatio,hRatio)
 
-let p = findImage(originImg,smallTemp);
-// var p = findImage(originImg,temp)
-log(p)
+// let p = findImage(originImg,smallTemp);
+// // var p = findImage(originImg,temp)
+// log(p)
 
 // const pointArr = [];
 // let map = new Map();
