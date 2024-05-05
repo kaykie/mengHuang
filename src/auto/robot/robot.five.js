@@ -18,9 +18,11 @@ for(var i = 0;i< 100;i++){
     toastLog(`开始第${i+1}轮鬼`)
     findTextAndClick('日常-',{region:'rightHalf'})
     // TODO
-    if(!hasText('日常-')){
+    if(!hasText('日常-',{region:'rightHalf'}) || !hasText('捉拿',{region:'rightHalf'})){
       sleep(2000)
       clickImageTemplate('renwu.jpg',{region:'rightHalf'})
+      sleep(2000)
+      clickClosePoint()
       sleep(2000)
       findTextAndClick('日常-',{region:'rightHalf'})
     }
@@ -48,7 +50,7 @@ for(var i = 0;i< 100;i++){
     }
     clickClosePoint()
     log('还在捉鬼中...')
-    sleep(20 * 1000)
+    sleep(10 * 1000)
   }
   
   loopFunction(function(){
