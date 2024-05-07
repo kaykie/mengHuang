@@ -1,7 +1,7 @@
 // 周一门派活动
 auto();
 
-const {findTextAndClick,loopFunction,isFighting,isFightingCallback,randomClick,clickImageTemplate,hasText,findTextRect} = require('/sdcard/mh/templateImages/util.js')
+const {findTextAndClick,loopFunction,isFighting,isFightingCallback,randomClick,clickImageTemplate,hasText,findTextRect} = require('util.js')
 
 
 
@@ -17,7 +17,7 @@ function isFight(){
 }
 
 while(true){
-  if(hasText('闯关-') || hasText('领取任务')){
+  if(hasText('闯关-',{region:'rightHalf'}) || hasText('领取任务',{region:'rightHalf'})){
     log('去领取任务了')
     sleep(1000);
     var res = findTextAndClick('闯关-',{region:'rightHalf'});
@@ -33,16 +33,19 @@ while(true){
       return clickImageTemplate('lingQuRenWu.jpg',{region:'rightBottomHalf'});
     },3)
   }
+  sleep(2000)
   randomClick()
   isFightingCallback(function(){
     log('回调内容')
     sleep(1000)
     loopFunction(function(){
       return findTextAndClick('闯关(')
-    },6)
+    },5)
     loopFunction(function(){
-      return clickImageTemplate('commonBtn.jpg',{region:'rightBottomHalf',isRepeat:true})
-    },6)
+      return clickImageTemplate('commonBtn.jpg',{region:'rightBottomHalf'})
+    },5)
+    sleep(2000)
+    return isFighting()
   })
   log('回调内容2')
   isFight()
