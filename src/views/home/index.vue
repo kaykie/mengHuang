@@ -17,7 +17,7 @@ import readImages from './modules/readImages'
 export default {
   data () {
     return {
-      version:'0.7.0',
+      version:'0.7.1',
       isShowDialog:false,
       store,
       list: [
@@ -89,7 +89,7 @@ export default {
       this.isShowDialog = true
       Dialog.alert({
         title: `${this.version}功能`,
-        message: '1. 更新捉鬼任务结束找不到结束点 \n2.更新动态图片添加 \n3.更新动态工具类添加\n4.优化5本进入战斗速度\n\n 注意：首次进入需要下载文件，请耐心等待1分钟，安装包版本:0.7.0.\n下载地址：https://gitee.com/kaykie/menghuang/releases/tag/0.7.0',
+        message: '1. 优化捉鬼点到任务，导致任务框弹出 \n2.优化门派闯关长时间不进入战斗功能 \n3.优化5本进入战斗速度\n\n 注意：首次进入需要下载文件，请耐心等待1分钟。',
         theme: 'round-button',
       }).then(() => {
         // on close
