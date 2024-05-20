@@ -17,7 +17,7 @@ import readImages from './modules/readImages'
 export default {
   data () {
     return {
-      version:'0.7.1',
+      version:'0.7.2',
       isShowDialog:false,
       store,
       list: [
@@ -89,7 +89,7 @@ export default {
       this.isShowDialog = true
       Dialog.alert({
         title: `${this.version}功能`,
-        message: '1. 优化捉鬼点到任务，导致任务框弹出 \n2.优化门派闯关长时间不进入战斗功能 \n3.优化5本进入战斗速度\n\n 注意：首次进入需要下载文件，请耐心等待1分钟。',
+        message: '1. 修复门派点击无法自动执行问题 \n注意：历史首次进入需要下载文件，请耐心等待1分钟。',
         theme: 'round-button',
       }).then(() => {
         // on close

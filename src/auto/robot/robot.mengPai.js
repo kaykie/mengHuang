@@ -1,7 +1,7 @@
 // 周一门派活动
 auto();
 
-const {findTextAndClick,loopFunction,isFighting,isFightingCallback,randomClick,clickImageTemplate,hasText,findTextRect} = require('util.js')
+const {findTextAndClick,loopFunction,isFighting,isFightingCallback,randomClick,clickImageTemplate,hasText,findTextRect} = require('/sdcard/mh/templateImages/util.js')
 
 
 
